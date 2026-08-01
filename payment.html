@@ -67,17 +67,13 @@ input{
 
 <input
 type="tel"
+id="mobile"
 placeholder="Enter Mobile Number"
 maxlength="10">
-
-<a
-href="https://razorpay.me/@niyajmohammednilgerampa1spaci"
-target="_blank"
-class="btn">
-
+<button class="btn" onclick="payNow()">
 💳 Pay Now
+</button>
 
-</a>
 
 <p class="note">
 
@@ -86,6 +82,37 @@ Secure Payment using Razorpay
 </p>
 
 </div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
+  authDomain: "a1-spacial-chicken-biryani.firebaseapp.com",
+  projectId: "a1-spacial-chicken-biryani",
+  storageBucket: "a1-spacial-chicken-biryani.firebasestorage.app",
+  messagingSenderId: "28701793250",
+  appId: "1:28701793250:web:3c5b24a625cd43d09237bb"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.payNow = async function () {
+  const mobile = document.getElementById("mobile").value;
+
+  if (mobile.length != 10) {
+    alert("Please enter a valid 10 digit mobile number");
+    return;
+  }
+
+  await addDoc(collection(db, "customers"), {
+    mobile: mobile,
+    time: new Date().toLocaleString()
+  });
+
+  window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
+};
+</script>
 </body>
 </html>
