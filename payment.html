@@ -99,7 +99,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 window.payNow = async function () {
-  const mobile = document.getElementById("mobile").value;
+const mobile = document.getElementById("mobile").value.trim();
+alert("Mobile = " + mobile);
 
   if (mobile.length != 10) {
     alert("Please enter a valid 10 digit mobile number");
