@@ -61,17 +61,41 @@ margin-bottom:20px;
 <tbody id="data">
 </tbody>
 </table>
-
 <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-// Yaha Firebase ka code agle step me paste karenge
+const firebaseConfig = {
+  apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
+  authDomain: "a1-spacial-chicken-biryani.firebaseapp.com",
+  projectId: "a1-spacial-chicken-biryani",
+  storageBucket: "a1-spacial-chicken-biryani.firebasestorage.app",
+  messagingSenderId: "28701793250",
+  appId: "1:28701793250:web:3c5b24a625cd43d09237bb"
+};
 
-function loadData(){
-alert("Admin Panel Ready");
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-window.loadData=loadData;
+window.loadData = async function () {
 
+  const table = document.getElementById("data");
+  table.innerHTML = "";
+
+  const querySnapshot = await getDocs(collection(db, "customers"));
+
+  querySnapshot.forEach((doc) => {
+    const d = doc.data();
+
+    table.innerHTML += `
+      <tr>
+        <td>${d.mobile}</td>
+        <td>${d.time}</td>
+      </tr>
+    `;
+  });
+
+};
 </script>
 
 </body>
