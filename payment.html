@@ -113,7 +113,11 @@ alert("Mobile = " + mobile);
   test: "OK",
   time: new Date().toLocaleString()
 });
-
+alert(JSON.stringify({
+  mobile: mobile,
+  Mobile: mobile,
+  test: "OK"
+}));
 alert("Saved Successfully");
 
  // window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
