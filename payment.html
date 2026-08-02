@@ -108,11 +108,15 @@ alert("Mobile = " + mobile);
   }
 
   await addDoc(collection(db, "customers"), {
-    mobile: mobile,
-    time: new Date().toLocaleString()
-  });
+  mobile: mobile,
+  Mobile: mobile,
+  test: "OK",
+  time: new Date().toLocaleString()
+});
 
-  window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
+alert("Saved Successfully");
+
+ // window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
 };
 </script>
 </body>
