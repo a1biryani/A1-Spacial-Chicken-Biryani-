@@ -87,10 +87,10 @@ window.loadData = async function () {
   querySnapshot.forEach((doc) => {
     const d = doc.data();
 
-    table.innerHTML += `
-      <tr>
-  <td>${d.mobile}</td>
-  <td>${d.time}</td>
+  table.innerHTML += `
+<tr>
+  <td>${d.mobile || d.Mobile}</td>
+  <td>${d.time || "-"}</td>
 </tr>
 `;
     `;
