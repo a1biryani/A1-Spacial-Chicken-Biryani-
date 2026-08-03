@@ -65,6 +65,23 @@ margin-bottom:20px;
 <h2 style="color:green;">
 💰 Total Collection: ₹<span id="total">0</span>
 </h2>
+  <hr>
+
+<h2>⚙️ Offer Settings</h2>
+
+<div style="margin:15px 0;">
+
+<button id="cashbackBtn">💸 Cashback : OFF 🔴</button>
+
+<button id="luckyBtn">🎁 Lucky Draw : OFF 🔴</button>
+
+<button id="sundayBtn">☀️ Sunday Offer : OFF 🔴</button>
+
+<button id="festivalBtn">🎉 Festival Offer : OFF 🔴</button>
+
+</div>
+
+<hr>
 <table>
 <thead>
 <tr>
@@ -92,7 +109,29 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+let cashback = false;
 
+document.addEventListener("DOMContentLoaded", () => {
+
+const cashbackBtn = document.getElementById("cashbackBtn");
+
+cashbackBtn.onclick = function(){
+
+cashback = !cashback;
+
+if(cashback){
+
+cashbackBtn.innerHTML = "💸 Cashback : ON 🟢";
+
+}else{
+
+cashbackBtn.innerHTML = "💸 Cashback : OFF 🔴";
+
+}
+
+};
+
+});
   window.searchMobile = function () {
 
 let input = document.getElementById("search").value.toUpperCase();
