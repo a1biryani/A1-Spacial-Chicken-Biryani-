@@ -6,14 +6,38 @@
 
 <style>
 body{
-font-family:Arial;
+font-family:Arial,sans-serif;
 background:#f5f5f5;
 padding:20px;
+margin:0;
 }
 
 h1{
 text-align:center;
 color:#d35400;
+}
+
+button{
+background:#d35400;
+color:white;
+border:none;
+padding:10px 16px;
+border-radius:6px;
+cursor:pointer;
+margin:4px;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+.searchBox{
+padding:10px;
+width:280px;
+max-width:100%;
+font-size:16px;
+margin-top:15px;
+margin-bottom:15px;
 }
 
 table{
@@ -23,7 +47,7 @@ background:white;
 }
 
 th,td{
-border:1px solid #ccc;
+border:1px solid #ddd;
 padding:10px;
 text-align:center;
 }
@@ -33,15 +57,25 @@ background:#ff9800;
 color:white;
 }
 
-button{
-background:#d35400;
-color:white;
-padding:10px 20px;
-border:none;
-border-radius:5px;
-margin-bottom:20px;
+.offerBox{
+margin:20px 0;
+padding:15px;
+background:#fff;
+border-radius:8px;
+box-shadow:0 0 5px rgba(0,0,0,.15);
+}
+
+.offerTitle{
+font-size:22px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.total{
+color:green;
 }
 </style>
+
 </head>
 
 <body>
@@ -49,54 +83,80 @@ margin-bottom:20px;
 <h1>A1 Spacial Chicken Biryani</h1>
 
 <button onclick="loadData()">Load Customers</button>
-  <br><br>
+
+<br><br>
 
 <input
 type="text"
 id="search"
+class="searchBox"
 placeholder="🔍 Search Mobile Number"
 onkeyup="searchMobile()"
-style="
-padding:10px;
-width:250px;
-font-size:16px;
-margin-bottom:20px;
-">
-<h2 style="color:green;">
-💰 Total Collection: ₹<span id="total">0</span>
+>
+
+<h2 class="total">
+💰 Total Collection:
+₹<span id="total">0</span>
 </h2>
-  <hr>
 
-<h2>⚙️ Offer Settings</h2>
+<hr>
 
-<div style="margin:15px 0;">
+<div class="offerBox">
 
-<button id="cashbackBtn">💸 Cashback : OFF 🔴</button>
+<div class="offerTitle">
+⚙️ Offer Settings
+</div>
 
-<button id="luckyBtn">🎁 Lucky Draw : OFF 🔴</button>
+<button id="cashbackBtn">
+💸 Cashback : OFF 🔴
+</button>
 
-<button id="sundayBtn">☀️ Sunday Offer : OFF 🔴</button>
+<button id="luckyBtn">
+🎁 Lucky Draw : OFF 🔴
+</button>
 
-<button id="festivalBtn">🎉 Festival Offer : OFF 🔴</button>
+<button id="sundayBtn">
+☀️ Sunday Offer : OFF 🔴
+</button>
+
+<button id="festivalBtn">
+🎉 Festival Offer : OFF 🔴
+</button>
 
 </div>
 
 <hr>
+
 <table>
+
 <thead>
+
 <tr>
+
 <th>Mobile Number</th>
 <th>Amount (₹)</th>
 <th>Date</th>
+
 </tr>
+
 </thead>
 
 <tbody id="data">
+
 </tbody>
+
 </table>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+import {
+getFirestore,
+collection,
+getDocs,
+doc,
+getDoc,
+updateDoc
+} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
@@ -109,11 +169,26 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+  const settingsRef = doc(db, "settings", "offers");
 let cashback = false;
 
-document.addEventListener("DOMContentLoaded", () => {
-
+document.addEventListener("DOMContentLoaded", async () => {
+  
 const cashbackBtn = document.getElementById("cashbackBtn");
+  const snap = await getDoc(settingsRef);
+
+if (snap.exists()) {
+
+cashback = snap.data().cashback;
+
+if (cashback) {
+cashbackBtn.innerHTML = "💸 Cashback : ON 🟢";
+} else {
+cashbackBtn.innerHTML = "💸 Cashback : OFF 🔴";
+}
+
+}
+
 
 cashbackBtn.onclick = function(){
 
@@ -128,7 +203,9 @@ cashbackBtn.innerHTML = "💸 Cashback : ON 🟢";
 cashbackBtn.innerHTML = "💸 Cashback : OFF 🔴";
 
 }
-
+await updateDoc(settingsRef, {
+  cashback: cashback
+});
 };
 
 });
