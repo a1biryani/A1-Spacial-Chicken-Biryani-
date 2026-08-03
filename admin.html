@@ -173,16 +173,24 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
   const settingsRef = doc(db, "settings", "offers");
 let cashback = false;
-
+let luckyDraw = false;
 document.addEventListener("DOMContentLoaded", async () => {
   
 const cashbackBtn = document.getElementById("cashbackBtn");
+ 
+  const luckyBtn = document.getElementById("luckyBtn");
   const snap = await getDoc(settingsRef);
 
 if (snap.exists()) {
 
 cashback = snap.data().cashback;
 
+ luckyDraw = snap.data().luckyDraw || false;
+  if (luckyDraw) {
+    luckyBtn.innerHTML = "🎁 Lucky Draw : ON 🟢";
+} else {
+    luckyBtn.innerHTML = "🎁 Lucky Draw : OFF 🔴";
+  }
 if (cashback) {
 cashbackBtn.innerHTML = "💸 Cashback : ON 🟢";
 } else {
@@ -216,6 +224,26 @@ try {
 };
 
 });
+  luckyBtn.onclick = async function () {
+
+    luckyDraw = !luckyDraw;
+
+    if (luckyDraw) {
+        luckyBtn.innerHTML = "🎁 Lucky Draw : ON 🟢";
+    } else {
+        luckyBtn.innerHTML = "🎁 Lucky Draw : OFF 🔴";
+    }
+
+    try {
+        await setDoc(settingsRef, {
+            luckyDraw: luckyDraw
+        }, { merge: true });
+
+        alert("Saved");
+    } catch (e) {
+        alert(e.message);
+    }
+};
   window.searchMobile = function () {
 
 let input = document.getElementById("search").value.toUpperCase();
