@@ -69,7 +69,7 @@ input{
 type="tel"
 id="mobile"
 placeholder="Enter Mobile Number"
-maxlength="10">
+maxlength="10">i
 <button class="btn" onclick="payNow()">
 💳 Pay Now
 </button>
@@ -100,7 +100,6 @@ const db = getFirestore(app);
 
 window.payNow = async function () {
 const mobile = document.getElementById("mobile").value.trim();
-alert("Mobile = " + mobile);
 
   if (mobile.length != 10) {
     alert("Please enter a valid 10 digit mobile number");
@@ -109,18 +108,10 @@ alert("Mobile = " + mobile);
 
   await addDoc(collection(db, "customers"), {
   mobile: mobile,
-  Mobile: mobile,
-  test: "OK",
   time: new Date().toLocaleString()
 });
-alert(JSON.stringify({
-  mobile: mobile,
-  Mobile: mobile,
-  test: "OK"
-}));
-alert("Saved Successfully");
-
- // window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
+    
+  window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
 };
 </script>
 </body>
