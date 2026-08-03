@@ -203,9 +203,14 @@ cashbackBtn.innerHTML = "💸 Cashback : ON 🟢";
 cashbackBtn.innerHTML = "💸 Cashback : OFF 🔴";
 
 }
-await updateDoc(settingsRef, {
-  cashback: cashback
-});
+try {
+    await updateDoc(settingsRef, {
+        cashback: cashback
+    });
+    alert("Saved");
+} catch (e) {
+    alert(e.message);
+}
 };
 
 });
