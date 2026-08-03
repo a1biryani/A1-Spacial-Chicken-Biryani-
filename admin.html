@@ -49,6 +49,19 @@ margin-bottom:20px;
 <h1>A1 Spacial Chicken Biryani</h1>
 
 <button onclick="loadData()">Load Customers</button>
+  <br><br>
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search Mobile Number"
+onkeyup="searchMobile()"
+style="
+padding:10px;
+width:250px;
+font-size:16px;
+margin-bottom:20px;
+">
 <h2 style="color:green;">
 💰 Total Collection: ₹<span id="total">0</span>
 </h2>
@@ -80,6 +93,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+  window.searchMobile = function () {
+
+let input = document.getElementById("search").value.toUpperCase();
+
+let table = document.getElementById("data");
+let tr = table.getElementsByTagName("tr");
+
+for (let i = 0; i < tr.length; i++) {
+
+let td = tr[i].getElementsByTagName("td")[0];
+
+if (td) {
+
+let txt = td.textContent || td.innerText;
+
+if (txt.toUpperCase().indexOf(input) > -1) {
+tr[i].style.display = "";
+} else {
+tr[i].style.display = "none";
+}
+
+}
+
+}
+
+  }
 window.loadData = async function () {
 
   const table = document.getElementById("data");
