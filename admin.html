@@ -174,11 +174,18 @@ const db = getFirestore(app);
   const settingsRef = doc(db, "settings", "offers");
 let cashback = false;
 let luckyDraw = false;
+  let sundayOffer = false;
+let festivalOffer = false;
 document.addEventListener("DOMContentLoaded", async () => {
   
 const cashbackBtn = document.getElementById("cashbackBtn");
  
   const luckyBtn = document.getElementById("luckyBtn");
+  
+  const sundayBtn = document.getElementById("sundayBtn");
+  
+const festivalBtn = document.getElementById("festivalBtn");
+  
   const snap = await getDoc(settingsRef);
 
 if (snap.exists()) {
@@ -186,6 +193,11 @@ if (snap.exists()) {
 cashback = snap.data().cashback;
 
  luckyDraw = snap.data().luckyDraw || false;
+
+  sundayOffer = snap.data().sundayOffer || false;
+  
+festivalOffer = snap.data().festivalOffer || false;
+  
   if (luckyDraw) {
     luckyBtn.innerHTML = "🎁 Lucky Draw : ON 🟢";
 } else {
@@ -198,7 +210,17 @@ cashbackBtn.innerHTML = "💸 Cashback : OFF 🔴";
 }
 
 }
+if (sundayOffer) {
+    sundayBtn.innerHTML = "☀️ Sunday Offer : ON 🟢";
+} else {
+    sundayBtn.innerHTML = "☀️ Sunday Offer : OFF 🔴";
+}
 
+if (festivalOffer) {
+    festivalBtn.innerHTML = "🎉 Festival Offer : ON 🟢";
+} else {
+    festivalBtn.innerHTML = "🎉 Festival Offer : OFF 🔴";
+}
 
 cashbackBtn.onclick = async function(){
 
@@ -237,6 +259,46 @@ try {
     try {
         await setDoc(settingsRef, {
             luckyDraw: luckyDraw
+        }, { merge: true });
+
+        alert("Saved");
+    } catch (e) {
+        alert(e.message);
+    }
+};
+  sundayBtn.onclick = async function () {
+
+    sundayOffer = !sundayOffer;
+
+    if (sundayOffer) {
+        sundayBtn.innerHTML = "☀️ Sunday Offer : ON 🟢";
+    } else {
+        sundayBtn.innerHTML = "☀️ Sunday Offer : OFF 🔴";
+    }
+
+    try {
+        await setDoc(settingsRef, {
+            sundayOffer: sundayOffer
+        }, { merge: true });
+
+        alert("Saved");
+    } catch (e) {
+        alert(e.message);
+    }
+};
+  festivalBtn.onclick = async function () {
+
+    festivalOffer = !festivalOffer;
+
+    if (festivalOffer) {
+        festivalBtn.innerHTML = "🎉 Festival Offer : ON 🟢";
+    } else {
+        festivalBtn.innerHTML = "🎉 Festival Offer : OFF 🔴";
+    }
+
+    try {
+        await setDoc(settingsRef, {
+            festivalOffer: festivalOffer
         }, { merge: true });
 
         alert("Saved");
