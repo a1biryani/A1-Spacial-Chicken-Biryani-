@@ -232,6 +232,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 window.payNow = async function () {
+    const btn = document.querySelector(".btn");
+
+btn.disabled = true;
+btn.innerHTML = "⏳ Processing Payment...";
+btn.style.opacity = "0.8";
 
 const selected = document.getElementById("amount").value;
 
@@ -243,11 +248,16 @@ const mobile = document.getElementById("mobile").value.trim();
 
 if (mobile.length != 10) {
     alert("Please enter a valid 10 digit mobile number");
+    btn.disabled = false;
+btn.innerHTML = "💳 Pay Now";
+btn.style.opacity = "1";
     return;
 }
-
 if (!amount || Number(amount) <= 0) {
     alert("Please select or enter a valid amount");
+    btn.disabled = false;
+btn.innerHTML = "💳 Pay Now";
+btn.style.opacity = "1";
     return;
 }
 
@@ -256,7 +266,7 @@ await addDoc(collection(db, "customers"), {
     amount: Number(amount),
     time: new Date().toLocaleString()
 });
-
+btn.innerHTML = "✅ Redirecting...";
 window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
 
 };
