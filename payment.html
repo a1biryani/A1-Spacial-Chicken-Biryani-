@@ -47,22 +47,31 @@ input:focus{
 }
 
 .btn{
-    display:block;
-    width:100%;
-    margin-top:25px;
-    background:linear-gradient(135deg,#ff9800,#ff5722);
-    color:#fff;
-    text-decoration:none;
-    padding:18px;
-    border:none;
-    border-radius:16px;
-    font-size:24px;
-    font-weight:bold;
-    box-shadow:0 8px 20px rgba(255,87,34,.35);
-    transition:.2s;
+display:block;
+width:100%;
+margin-top:25px;
+background:linear-gradient(135deg,#ff9800,#ff5722);
+color:#fff;
+text-decoration:none;
+padding:20px;
+border:none;
+border-radius:20px;
+font-size:28px;
+font-weight:bold;
+letter-spacing:0.5px;
+cursor:pointer;
+box-shadow:0 12px 30px rgba(255,87,34,.35);
+transition:all .3s ease;
 }
+
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 18px 40px rgba(255,87,34,.45);
+}
+
 .btn:active{
-    transform:scale(.98);
+transform:scale(.97);
+box-shadow:0 6px 15px rgba(255,87,34,.25);
 }
 
 .note{
