@@ -157,19 +157,25 @@ if (snap.exists()) {
 
     const data = snap.data();
 
-    if (data.festivalOffer) {
+    offerBox.style.display = "block";
 
-        offerBox.style.display = "block";
-        offerBox.innerHTML = "🎉 Festival Offer is LIVE!";
+    let html = "<b>🎁 Special Offers</b><br><br>";
 
-    } else if (data.sundayOffer) {
-
-        offerBox.style.display = "block";
-        offerBox.innerHTML = "☀️ Sunday Special Offer is LIVE!";
-
+    if (data.sundayOffer) {
+        html += "🟢 ☀️ Sunday Special Offer is LIVE!<br>";
+    } else {
+        html += "⚪ ☀️ Sunday Special Offer Every Sunday<br>";
     }
 
+    if (data.festivalOffer) {
+        html += "🟢 🎉 Festival Offer is LIVE!<br>";
+    } else {
+        html += "⚪ 🎉 Festival Offers on Special Festivals";
+    }
+
+    offerBox.innerHTML = html;
 }
+
     </script>
 </body>
 </html>
