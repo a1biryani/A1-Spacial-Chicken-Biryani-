@@ -178,14 +178,23 @@ let liveOffer = false;
 
 if (data.sundayOffer) {
     liveOffer = true;
-    html += "🟢 <span style='color:#00ff66;font-weight:bold;'>LIVE</span> ☀️ Sunday Special Offer<br>";
+    html += `<div style="padding:12px 0;">
+🟢 <span style="background:#00c853;color:#fff;padding:3px 8px;border-radius:12px;font-size:14px;">LIVE</span>
+☀️ <b>Sunday Special Offer</b><br>
+<span style="font-size:16px;">Every Sunday</span>
+</div>
+<hr style="border:0;border-top:1px solid rgba(255,255,255,.3);margin:12px 0;">`;
 } else {
     html += "⚪ ☀️ Sunday Special Offer Every Sunday<br>";
 }
 
 if (data.festivalOffer) {
     liveOffer = true;
-    html += "🟢 <span style='color:#00ff66;font-weight:bold;'>LIVE</span> 🎉 Festival Offer<br>";
+    html += `<div style="padding:12px 0;">
+🟢 <span style="background:#00c853;color:#fff;padding:3px 8px;border-radius:12px;font-size:14px;">LIVE</span>
+🎉 <b>Festival Offer</b><br>
+<span style="font-size:16px;">On Special Festivals</span>
+</div>`;
 } else {
     html += "⚪ 🎉 Festival Offers on Special Festivals";
 }
