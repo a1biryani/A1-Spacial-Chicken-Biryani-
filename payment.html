@@ -165,7 +165,12 @@ Complete your order safely in just a few seconds.
 </p>
 
 <p>Please enter your mobile number before payment.</p>
-
+<input
+  type="text"
+  id="name"
+  placeholder="Enter Your Name"
+  maxlength="40"
+  style="width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
 <input
 type="tel"
 id="mobile"
@@ -243,7 +248,7 @@ const selected = document.getElementById("amount").value;
 const amount = selected === "custom"
     ? document.getElementById("customAmount").value
     : selected;
-
+const name = document.getElementById("name").value.trim();
 const mobile = document.getElementById("mobile").value.trim();
 
 if (mobile.length != 10) {
@@ -262,6 +267,7 @@ btn.style.opacity = "1";
 }
 
 await addDoc(collection(db, "customers"), {
+    name: name,
     mobile: mobile,
     amount: Number(amount),
     time: new Date().toLocaleString()
