@@ -222,7 +222,7 @@ Secure Payment using Razorpay
 </div>
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
@@ -272,6 +272,20 @@ await addDoc(collection(db, "customers"), {
     amount: Number(amount),
     time: new Date().toLocaleString()
 });
+    const settingsRef = doc(db, "settings", "offers");
+const offerSnap = await getDoc(settingsRef);
+
+if (offerSnap.exists() && offerSnap.data().luckyDraw) {
+alert(
+`🎉 Congratulations ${name}!
+
+✅ Your Lucky Draw Entry has been Registered.
+
+🍀 Best of Luck!
+
+Winner announcement will be made on our WhatsApp Channel.`
+);
+}
 btn.innerHTML = "✅ Redirecting...";
 window.location.href = "https://razorpay.me/@niyajmohammednilgerampa1spaci";
 
