@@ -272,6 +272,19 @@ await addDoc(collection(db, "customers"), {
     amount: Number(amount),
     time: new Date().toLocaleString()
 });
+    const entryCount = Math.floor(Number(amount) / 100);
+
+for (let i = 0; i < entryCount; i++) {
+  await addDoc(collection(db, "luckyDrawEntries"), {
+    name: name,
+    mobile: mobile,
+    amount: Number(amount),
+    paymentTime: new Date().toISOString(),
+    isValid: true,
+    couponNo: i + 1,
+    totalCoupons: entryCount
+  });
+}
     const settingsRef = doc(db, "settings", "offers");
 const offerSnap = await getDoc(settingsRef);
 
