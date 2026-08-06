@@ -84,6 +84,9 @@ color:green;
 
 <button onclick="loadData()">Load Customers</button>
 <button onclick="loadLuckyDraw()">🏆 Lucky Draw Entries</button>
+  <button onclick="pickWinner()">
+🏆 Pick Winner
+  </button>
 <br><br>
 
 <input
@@ -379,6 +382,30 @@ document.getElementById("total").innerText = total;
   document.getElementById("total").innerText = total;
 
 };
+  window.pickWinner = async function () {
+
+  const querySnapshot = await getDocs(collection(db, "luckyDrawEntries"));
+
+  let entries = [];
+
+  querySnapshot.forEach((doc) => {
+    entries.push(doc.data());
+  });
+
+  if (entries.length === 0) {
+    alert("No Lucky Draw Entries Found!");
+    return;
+  }
+
+  const randomIndex = Math.floor(Math.random() * entries.length);
+
+  const winner = entries[randomIndex];
+    alert(
+  "🏆 Winner\n\n" +
+  "Name: " + winner.name +
+  "\n\nMobile: " + winner.mobile +
+  "\n\nAmount: ₹" + winner.amount
+);
 </script>
 
 </body>
