@@ -83,7 +83,7 @@ color:green;
 <h1>A1 Spacial Chicken Biryani</h1>
 
 <button onclick="loadData()">Load Customers</button>
-
+<button onclick="loadLuckyDraw()">🏆 Lucky Draw Entries</button>
 <br><br>
 
 <input
@@ -352,6 +352,32 @@ total += Number(d.amount || 0);
 `;
   });
 document.getElementById("total").innerText = total;
+};
+  window.loadLuckyDraw = async function () {
+
+  const table = document.getElementById("data");
+  table.innerHTML = "";
+  let total = 0;
+
+  const querySnapshot = await getDocs(collection(db, "luckyDrawEntries"));
+
+  querySnapshot.forEach((doc) => {
+    const d = doc.data();
+
+    total += Number(d.amount || 0);
+
+    table.innerHTML += `
+      <tr>
+        <td>${d.name || "-"}</td>
+        <td>${d.mobile || "-"}</td>
+        <td>₹${d.amount}</td>
+        <td>${d.paymentTime || "-"}</td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("total").innerText = total;
+
 };
 </script>
 
