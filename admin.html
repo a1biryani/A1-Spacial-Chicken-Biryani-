@@ -459,6 +459,7 @@ document.getElementById("total").innerText = total;
 
   if (!confirm("Start a New Lucky Draw?")) return;
     alert("After Confirm");
+    alert("activeDrawId = " + activeDrawId);
 
   await updateDoc(doc(db, "luckyDraws", activeDrawId), {
     status: "completed"
