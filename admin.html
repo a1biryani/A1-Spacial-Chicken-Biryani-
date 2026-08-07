@@ -159,7 +159,8 @@ getDocs,
 doc,
 getDoc,
 updateDoc,
-  setDoc
+  setDoc,
+  addDoc
   
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -400,6 +401,14 @@ document.getElementById("total").innerText = total;
   const randomIndex = Math.floor(Math.random() * entries.length);
 
   const winner = entries[randomIndex];
+    await addDoc(collection(db, "luckyDrawWinners"), {
+  name: winner.name,
+  mobile: winner.mobile,
+  amount: winner.amount,
+  paymentTime: winner.paymentTime || "",
+  prize: "1st Prize",
+  winnerTime: new Date().toISOString()
+});
     alert(
   "🏆 Winner\n\n" +
   "Name: " + winner.name +
