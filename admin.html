@@ -454,7 +454,7 @@ document.getElementById("total").innerText = total;
   "\n\nAmount: ₹" + winner.amount
 );
     };
-  async function startNewDraw() {
+  window.startNewDraw = async function () {
     alert("Start New Draw Clicked");
 
   if (!confirm("Start a New Lucky Draw?")) return;
