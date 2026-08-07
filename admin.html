@@ -87,6 +87,9 @@ color:green;
   <button onclick="pickWinner()">
 🏆 Pick Winner
   </button>
+  <button onclick="startNewDraw()">
+🆕 Start New Draw
+  </button>
 <br><br>
 
 <input
@@ -160,7 +163,9 @@ doc,
 getDoc,
 updateDoc,
   setDoc,
-  addDoc
+  addDoc,
+  query,
+  where
   
 } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
@@ -175,6 +180,39 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+  let activeDrawId = "";
+let activeDrawName = "";
+
+async function loadActiveDraw() {
+
+  const snap = await getDocs(
+    query(
+      collection(db, "luckyDraws"),
+      where("status", "==", "active")
+    )
+  );
+
+  if (snap.empty) {
+
+    const newDraw = await addDoc(collection(db, "luckyDraws"), {
+      name: "Draw #1",
+      status: "active",
+      createdAt: new Date().toISOString()
+    });
+
+    activeDrawId = newDraw.id;
+    activeDrawName = "Draw #1";
+
+  } else {
+
+    const draw = snap.docs[0];
+
+    activeDrawId = draw.id;
+    activeDrawName = draw.data().name;
+
+  }
+
+}
   const settingsRef = doc(db, "settings", "offers");
 let cashback = false;
 let luckyDraw = false;
@@ -416,6 +454,28 @@ document.getElementById("total").innerText = total;
   "\n\nAmount: ₹" + winner.amount
 );
     };
+  async function startNewDraw() {
+
+  if (!confirm("Start a New Lucky Draw?")) return;
+
+  await updateDoc(doc(db, "luckyDraws", activeDrawId), {
+    status: "completed"
+  });
+
+  const snap = await getDocs(collection(db, "luckyDraws"));
+  const drawNumber = snap.size + 1;
+
+  const newDraw = await addDoc(collection(db, "luckyDraws"), {
+    name: "Draw #" + drawNumber,
+    status: "active",
+    createdAt: new Date().toISOString()
+  });
+
+  activeDrawId = newDraw.id;
+  activeDrawName = "Draw #" + drawNumber;
+
+  alert("✅ " + activeDrawName + " Started Successfully!");
+  }
 </script>
 
 </body>
