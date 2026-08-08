@@ -435,11 +435,32 @@ document.getElementById("total").innerText = total;
     )
 );
 
-  let entries = [];
+const winnerSnapshot = await getDocs(
+    query(
+        collection(db, "luckyDrawWinners"),
+        where("drawId", "==", activeDrawId)
+    )
+);
 
-  querySnapshot.forEach((doc) => {
-    entries.push(doc.data());
-  });
+const previousWinnerMobiles = new Set();
+
+winnerSnapshot.forEach((doc) => {
+    const winner = doc.data();
+
+    if (winner.mobile) {
+        previousWinnerMobiles.add(String(winner.mobile));
+    }
+});
+
+let entries = [];
+
+querySnapshot.forEach((doc) => {
+    const entry = doc.data();
+
+    if (!previousWinnerMobiles.has(String(entry.mobile))) {
+        entries.push(entry);
+    }
+});
 
   if (entries.length === 0) {
     alert("No Lucky Draw Entries Found!");
@@ -447,6 +468,7 @@ document.getElementById("total").innerText = total;
   }
 
   const randomIndex = Math.floor(Math.random() * entries.length);
+    const winnerNumber = winnerSnapshot.size + 1;
 
   const winner = entries[randomIndex];
     await addDoc(collection(db, "luckyDrawWinners"), {
@@ -454,8 +476,13 @@ document.getElementById("total").innerText = total;
   mobile: winner.mobile,
   amount: winner.amount,
   paymentTime: winner.paymentTime || "",
-  prize: "1st Prize",
-      drawId: activeDrawId,
+  winnerNumber: winnerNumber,
+winnerPosition:
+    winnerNumber === 1 ? "1st Winner" :
+    winnerNumber === 2 ? "2nd Winner" :
+    winnerNumber === 3 ? "3rd Winner" :
+    winnerNumber + "th Winner",
+drawId: activeDrawId,
   winnerTime: new Date().toISOString()
 });
     alert(
