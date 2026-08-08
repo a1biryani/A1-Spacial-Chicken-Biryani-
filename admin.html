@@ -239,7 +239,11 @@ let sundayNonMemberDiscount = 0;
 let festivalMemberDiscount = 0;
 let festivalNonMemberDiscount = 0;
 document.addEventListener("DOMContentLoaded", async () => {
- await loadActiveDraw(); 
+ try {
+    await loadActiveDraw();
+} catch (e) {
+    console.error("loadActiveDraw error:", e);
+ }
 const cashbackBtn = document.getElementById("cashbackBtn");
  
   const luckyBtn = document.getElementById("luckyBtn");
@@ -318,7 +322,6 @@ try {
 }
 };
 
-});
   luckyBtn.onclick = async function () {
 
     luckyDraw = !luckyDraw;
@@ -383,6 +386,7 @@ festivalNonMemberDiscount: Number(document.getElementById("festivalNonMemberDisc
         alert(e.message);
     }
 };
+  });
   window.searchMobile = function () {
 
 let input = document.getElementById("search").value.toUpperCase();
