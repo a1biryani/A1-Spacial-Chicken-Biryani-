@@ -235,12 +235,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+    let activeDrawId = "";
 
 window.payNow = async function () {
-    const btn = document.querySelector(".btn");
 
-btn.disabled = true;
-btn.innerHTML = "⏳ Processing Payment...";
+    const currentDrawSnap = await getDoc(doc(db, "settings", "currentDraw"));
+
+    if (currentDrawSnap.exists()) {
+        activeDrawId = currentDrawSnap.data().activeDrawId;
+    }
+
+    const btn = document.querySelector(".btn");
+    btn.disabled = true;
+    btn.innerHTML = "⌛ Processing Payment...";
 btn.style.opacity = "0.8";
 
 const selected = document.getElementById("amount").value;
@@ -276,6 +283,7 @@ await addDoc(collection(db, "customers"), {
 
 for (let i = 0; i < entryCount; i++) {
   await addDoc(collection(db, "luckyDrawEntries"), {
+      drawId: activeDrawId,
     name: name,
     mobile: mobile,
     amount: Number(amount),
