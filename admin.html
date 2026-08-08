@@ -267,10 +267,10 @@ sundayNonMemberDiscount = snap.data().sundayNonMemberDiscount ?? 0;
 festivalMemberDiscount = snap.data().festivalMemberDiscount ?? 0;
 festivalNonMemberDiscount = snap.data().festivalNonMemberDiscount ?? 0;
 
-sundayMemberDiscountInput.value = sundayMemberDiscount;
-sundayNonMemberDiscountInput.value = sundayNonMemberDiscount;
-festivalMemberDiscountInput.value = festivalMemberDiscount;
-festivalNonMemberDiscountInput.value = festivalNonMemberDiscount;
+document.getElementById("sundayMemberDiscount").value = sundayMemberDiscount;
+document.getElementById("sundayNonMemberDiscount").value = sundayNonMemberDiscount;
+document.getElementById("festivalMemberDiscount").value = festivalMemberDiscount;
+document.getElementById("festivalNonMemberDiscount").value = festivalNonMemberDiscount;
   if (luckyDraw) {
     luckyBtn.innerHTML = "🎁 Lucky Draw : ON 🟢";
 } else {
@@ -352,8 +352,8 @@ try {
     try {
         await setDoc(settingsRef, {
     sundayOffer: sundayOffer,
-    sundayMemberDiscount: Number(sundayMemberDiscountInput.value),
-    sundayNonMemberDiscount: Number(sundayNonMemberDiscountInput.value)
+    sundayMemberDiscount: Number(document.getElementById("sundayMemberDiscount").value),
+sundayNonMemberDiscount: Number(document.getElementById("sundayNonMemberDiscount").value)
 }, { merge: true });
 
         alert("Saved");
@@ -374,8 +374,8 @@ try {
     try {
         await setDoc(settingsRef, {
     festivalOffer: festivalOffer,
-    festivalMemberDiscount: Number(festivalMemberDiscountInput.value),
-    festivalNonMemberDiscount: Number(festivalNonMemberDiscountInput.value)
+    festivalMemberDiscount: Number(document.getElementById("festivalMemberDiscount").value)
+festivalNonMemberDiscount: Number(document.getElementById("festivalNonMemberDiscount").value)
 }, { merge: true });
 
         alert("Saved");
