@@ -124,11 +124,27 @@ onkeyup="searchMobile()"
 <button id="sundayBtn">
 ☀️ Sunday Offer : OFF 🔴
 </button>
+<label>
+    👥 WhatsApp Group Member Discount (%)
+    <input type="number" id="sundayMemberDiscount" min="0" max="100" value="0">
+</label>
 
+<label>
+    👤 Non-Member Discount (%)
+    <input type="number" id="sundayNonMemberDiscount" min="0" max="100" value="0">
+</label>
 <button id="festivalBtn">
 🎉 Festival Offer : OFF 🔴
 </button>
+<label>
+    👥 WhatsApp Group Member Discount (%)
+    <input type="number" id="festivalMemberDiscount" min="0" max="100" value="0">
+</label>
 
+<label>
+    👤 Non-Member Discount (%)
+    <input type="number" id="festivalNonMemberDiscount" min="0" max="100" value="0">
+</label>
 </div>
 
 <hr>
@@ -218,6 +234,10 @@ let cashback = false;
 let luckyDraw = false;
   let sundayOffer = false;
 let festivalOffer = false;
+  let sundayMemberDiscount = 0;
+let sundayNonMemberDiscount = 0;
+let festivalMemberDiscount = 0;
+let festivalNonMemberDiscount = 0;
 document.addEventListener("DOMContentLoaded", async () => {
  await loadActiveDraw(); 
 const cashbackBtn = document.getElementById("cashbackBtn");
@@ -227,7 +247,10 @@ const cashbackBtn = document.getElementById("cashbackBtn");
   const sundayBtn = document.getElementById("sundayBtn");
   
 const festivalBtn = document.getElementById("festivalBtn");
-  
+  const sundayMemberDiscountInput = document.getElementById("sundayMemberDiscount");
+const sundayNonMemberDiscountInput = document.getElementById("sundayNonMemberDiscount");
+const festivalMemberDiscountInput = document.getElementById("festivalMemberDiscount");
+const festivalNonMemberDiscountInput = document.getElementById("festivalNonMemberDiscount");
   const snap = await getDoc(settingsRef);
 
 if (snap.exists()) {
@@ -239,7 +262,15 @@ cashback = snap.data().cashback;
   sundayOffer = snap.data().sundayOffer || false;
   
 festivalOffer = snap.data().festivalOffer || false;
-  
+  sundayMemberDiscount = snap.data().sundayMemberDiscount ?? 0;
+sundayNonMemberDiscount = snap.data().sundayNonMemberDiscount ?? 0;
+festivalMemberDiscount = snap.data().festivalMemberDiscount ?? 0;
+festivalNonMemberDiscount = snap.data().festivalNonMemberDiscount ?? 0;
+
+sundayMemberDiscountInput.value = sundayMemberDiscount;
+sundayNonMemberDiscountInput.value = sundayNonMemberDiscount;
+festivalMemberDiscountInput.value = festivalMemberDiscount;
+festivalNonMemberDiscountInput.value = festivalNonMemberDiscount;
   if (luckyDraw) {
     luckyBtn.innerHTML = "🎁 Lucky Draw : ON 🟢";
 } else {
@@ -320,8 +351,10 @@ try {
 
     try {
         await setDoc(settingsRef, {
-            sundayOffer: sundayOffer
-        }, { merge: true });
+    sundayOffer: sundayOffer,
+    sundayMemberDiscount: Number(sundayMemberDiscountInput.value),
+    sundayNonMemberDiscount: Number(sundayNonMemberDiscountInput.value)
+}, { merge: true });
 
         alert("Saved");
     } catch (e) {
@@ -340,8 +373,10 @@ try {
 
     try {
         await setDoc(settingsRef, {
-            festivalOffer: festivalOffer
-        }, { merge: true });
+    festivalOffer: festivalOffer,
+    festivalMemberDiscount: Number(festivalMemberDiscountInput.value),
+    festivalNonMemberDiscount: Number(festivalNonMemberDiscountInput.value)
+}, { merge: true });
 
         alert("Saved");
     } catch (e) {
