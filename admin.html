@@ -476,6 +476,10 @@ document.getElementById("total").innerText = total;
 
   activeDrawId = newDraw.id;
   activeDrawName = "Draw #" + drawNumber;
+    await setDoc(doc(db, "settings", "currentDraw"), {
+  activeDrawId: activeDrawId,
+  activeDrawName: activeDrawName
+});
 
   alert("✅ " + activeDrawName + " Started Successfully!");
   }
