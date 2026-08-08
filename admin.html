@@ -401,7 +401,12 @@ document.getElementById("total").innerText = total;
   table.innerHTML = "";
   let total = 0;
 
-  const querySnapshot = await getDocs(collection(db, "luckyDrawEntries"));
+  const querySnapshot = await getDocs(
+    query(
+        collection(db, "luckyDrawEntries"),
+        where("drawId", "==", activeDrawId)
+    )
+);
 
   querySnapshot.forEach((doc) => {
     const d = doc.data();
@@ -423,7 +428,12 @@ document.getElementById("total").innerText = total;
 };
   window.pickWinner = async function () {
 
-  const querySnapshot = await getDocs(collection(db, "luckyDrawEntries"));
+  const querySnapshot = await getDocs(
+    query(
+        collection(db, "luckyDrawEntries"),
+        where("drawId", "==", activeDrawId)
+    )
+);
 
   let entries = [];
 
@@ -445,6 +455,7 @@ document.getElementById("total").innerText = total;
   amount: winner.amount,
   paymentTime: winner.paymentTime || "",
   prize: "1st Prize",
+      drawId: activeDrawId,
   winnerTime: new Date().toISOString()
 });
     alert(
