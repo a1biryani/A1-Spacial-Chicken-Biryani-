@@ -380,7 +380,7 @@ sundayNonMemberDiscount: Number(document.getElementById("sundayNonMemberDiscount
     try {
         await setDoc(settingsRef, {
     festivalOffer: festivalOffer,
-    festivalMemberDiscount: Number(document.getElementById("festivalMemberDiscount").value)
+    festivalMemberDiscount: Number(document.getElementById("festivalMemberDiscount").value),
 festivalNonMemberDiscount: Number(document.getElementById("festivalNonMemberDiscount").value)
 }, { merge: true });
 
