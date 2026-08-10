@@ -244,6 +244,7 @@ const db = getFirestore(app);
     let activeDrawId = "";
 
 window.payNow = async function () {
+    alert("PAY NOW FUNCTION STARTED");
 
     const currentDrawSnap = await getDoc(doc(db, "settings", "currentDraw"));
 
