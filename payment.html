@@ -343,8 +343,7 @@ btn.innerHTML = "✅ Redirecting...";
 
 const razorpayPage =
   "https://pages.razorpay.com/pl_TQOjY6tL7fjxzX/view?amount=" +
-  Math.round(finalAmount) +
-  "&phone=" + encodeURIComponent("+91" + mobile);
+  Math.round(finalAmount);
 
 window.location.href = razorpayPage;
 
