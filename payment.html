@@ -278,7 +278,46 @@ btn.innerHTML = "💳 Pay Now";
 btn.style.opacity = "1";
     return;
 }
+const memberStatus = document.getElementById("whatsappMember").value;
 
+const settingsRef = doc(db, "settings", "offers");
+const offerSnap = await getDoc(settingsRef);
+
+let discountPercent = 0;
+let offerName = "";
+
+if (offerSnap.exists()) {
+    const offers = offerSnap.data();
+
+    if (offers.festivalOffer) {
+        offerName = "Festival Offer";
+
+        discountPercent =
+            memberStatus === "yes"
+            ? Number(offers.festivalMemberDiscount || 0)
+            : Number(offers.festivalNonMemberDiscount || 0);
+
+    } else if (offers.sundayOffer) {
+        offerName = "Sunday Offer";
+
+        discountPercent =
+            memberStatus === "yes"
+            ? Number(offers.sundayMemberDiscount || 0)
+            : Number(offers.sundayNonMemberDiscount || 0);
+    }
+}
+
+const originalAmount = Number(amount);
+const discountAmount = originalAmount * discountPercent / 100;
+const finalAmount = originalAmount - discountAmount;
+
+alert(
+    "🎉 " + offerName +
+    "\n\nOriginal Amount: ₹" + originalAmount +
+    "\nDiscount: " + discountPercent + "%" +
+    "\nDiscount Amount: ₹" + discountAmount +
+    "\n\n💰 Final Amount: ₹" + finalAmount
+);
 await addDoc(collection(db, "customers"), {
     name: name,
     mobile: mobile,
