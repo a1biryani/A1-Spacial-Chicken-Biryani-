@@ -339,8 +339,7 @@ for (let i = 0; i < entryCount; i++) {
     totalCoupons: entryCount
   });
 }
-    const settingsRef = doc(db, "settings", "offers");
-const offerSnap = await getDoc(settingsRef);
+
 
 if (offerSnap.exists() && offerSnap.data().luckyDraw) {
 alert(
