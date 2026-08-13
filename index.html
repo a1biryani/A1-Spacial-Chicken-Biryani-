@@ -4,26 +4,53 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A1 Spacial Chicken Biryani</title>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
 body{background:#fff8f0;color:#333;}
 header{background:#8B0000;color:#fff;text-align:center;padding:20px;}
 header h1{font-size:34px;}
 header p{margin-top:8px;font-size:16px;}
-.hero{background:linear-gradient(135deg,#ff9800,#ff5722);padding:60px 20px;text-align:center;color:#fff;}
+
+.hero{
+background:linear-gradient(135deg,#ff9800,#ff5722);
+padding:60px 20px;
+text-align:center;
+color:#fff;
+}
 .hero h2{font-size:40px;margin-bottom:15px;}
 .hero p{font-size:20px;margin-bottom:20px;}
-.btn{display:inline-block;padding:12px 25px;margin:10px;background:#8B0000;color:#fff;text-decoration:none;border-radius:8px;font-weight:bold;}
-.section{padding:40px 20px;text-align:center;}
-.menu-box{
-    background:#fff8e8;
-    border:2px solid #ff9800;
-    border-radius:10px;
-    padding:15px;
-    font-size:20px;
-    line-height:2;
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+margin:10px;
+background:#8B0000;
+color:#fff;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
 }
-footer{background:#222;color:#fff;padding:20px;text-align:center;margin-top:30px;}
+
+.section{padding:40px 20px;text-align:center;}
+
+.menu-box{
+background:#fff8e8;
+border:2px solid #ff9800;
+border-radius:10px;
+padding:15px;
+font-size:20px;
+line-height:2;
+}
+
+footer{
+background:#222;
+color:#fff;
+padding:20px;
+text-align:center;
+margin-top:30px;
+}
+
 .whatsapp-float{
 position:fixed;
 bottom:20px;
@@ -41,36 +68,201 @@ text-decoration:none;
 box-shadow:0 4px 10px rgba(0,0,0,0.3);
 z-index:999;
 }
-    @keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(20px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-    }
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* REVIEWS */
+.review-section{
+padding:40px 15px;
+text-align:center;
+}
+
+.review-card{
+max-width:620px;
+margin:0 auto;
+background:#fff;
+border:1px solid #eee;
+border-radius:24px;
+padding:25px 18px;
+box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.review-title{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.review-subtitle{
+font-size:18px;
+color:#666;
+margin-bottom:22px;
+}
+
+.rating-summary{
+background:#fff8e8;
+border:1px solid #f0d98a;
+border-radius:18px;
+padding:20px;
+margin-bottom:22px;
+}
+
+.summary-stars{
+font-size:34px;
+color:#ffb400;
+letter-spacing:3px;
+}
+
+.summary-score{
+font-size:24px;
+font-weight:bold;
+margin-top:5px;
+}
+
+.summary-count{
+color:#777;
+font-weight:normal;
+font-size:16px;
+}
+
+.rate-title{
+font-size:24px;
+margin-bottom:14px;
+}
+
+.star-picker{
+display:flex;
+justify-content:center;
+gap:8px;
+margin:8px 0 6px;
+}
+
+.star-btn{
+border:0;
+background:transparent;
+color:#ccc;
+font-size:42px;
+line-height:1;
+cursor:pointer;
+padding:0;
+}
+
+.star-btn.active{
+color:#ffb400;
+}
+
+.rate-hint{
+color:#777;
+margin-bottom:16px;
+}
+
+.review-input{
+width:100%;
+min-height:120px;
+border:1px solid #ddd;
+border-radius:14px;
+padding:14px;
+font-size:17px;
+resize:vertical;
+}
+
+.review-submit{
+border:0;
+background:#b00000;
+color:#fff;
+padding:13px 28px;
+border-radius:10px;
+font-size:17px;
+font-weight:bold;
+margin-top:15px;
+cursor:pointer;
+}
+
+.review-submit:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.login-note{
+margin-top:10px;
+font-size:13px;
+color:#777;
+}
+
+.review-list-title{
+text-align:left;
+font-size:22px;
+margin:28px 0 12px;
+}
+
+.review-item{
+text-align:left;
+background:#fffaf2;
+border:1px solid #eee1cf;
+border-radius:14px;
+padding:14px;
+margin-top:10px;
+}
+
+.review-item-stars{
+color:#ffb400;
+font-size:20px;
+letter-spacing:1px;
+}
+
+.review-item-name{
+font-weight:bold;
+margin-top:7px;
+}
+
+.review-item-text{
+font-size:16px;
+line-height:1.5;
+margin-top:6px;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+}
+
+.review-item-date{
+font-size:12px;
+color:#888;
+margin-top:7px;
+}
+
+.review-message{
+margin-top:12px;
+font-size:14px;
+min-height:20px;
+}
 </style>
 </head>
+
 <body>
+
 <header>
 <h1>A1 Spacial Chicken Biryani</h1>
 <p>Bhadali Kheda Choraha, Kota Bypass, Bhilwara (Raj.)</p>
 <p>Shop Open : 9:00 AM</p>
 </header>
-<section style="text-align:center; padding:20px;">
-  <img src="./file_00000000bc2c8208a33b92b66380fb9e.png"
-       alt="A1 Spacial Chicken Biryani"
-       style="width:100%; max-width:900px; border-radius:12px;">
+
+<section style="text-align:center;padding:20px;">
+<img
+src="./file_00000000bc2c8208a33b92b66380fb9e.png"
+alt="A1 Spacial Chicken Biryani"
+style="width:100%;max-width:900px;border-radius:12px;">
 </section>
+
 <section class="hero">
 <h2>Best Taste In Town</h2>
 <p>Fresh • Hygienic • Delicious Chicken Biryani</p>
+
 <a href="tel:9119357786" class="btn">📞 Call Now</a>
 <a href="https://wa.me/919119357786" class="btn">💬 WhatsApp</a>
 </section>
-    <div id="offerBox"
+
+<div id="offerBox"
 style="
 display:none;
 background:linear-gradient(135deg,#ff6a00,#ff9800,#ffcc00);
@@ -85,11 +277,10 @@ box-shadow:0 8px 20px rgba(0,0,0,0.25);
 border:2px solid rgba(255,255,255,0.3);
 line-height:1.8;
 animation:fadeIn 0.8s ease;">
-    </div>
+</div>
+
 <section class="section">
-
 <h2>🍽️ Our Menu</h2>
-
 <br>
 
 <div class="menu-box">
@@ -97,117 +288,921 @@ animation:fadeIn 0.8s ease;">
 <p>🍗 Full Plate - <b>₹100</b></p>
 <p>🍲 1 Kg Family Pack - <b>₹200</b></p>
 </div>
+</section>
+
+
+<!-- RATING & REVIEWS -->
+
+<section class="review-section" id="reviews">
+
+<div class="review-card">
+
+<div style="
+font-size:14px;
+letter-spacing:3px;
+color:#a06a00;
+font-weight:bold;">
+A1 CUSTOMER EXPERIENCE
+</div>
+
+<h2 class="review-title">
+⭐ Rating & Customer Reviews
+</h2>
+
+<p class="review-subtitle">
+Share your experience with A1 Spacial Chicken Biryani
+</p>
+
+
+<div class="rating-summary">
+
+<div id="summaryStars" class="summary-stars">
+☆☆☆☆☆
+</div>
+
+<div class="summary-score">
+<span id="averageRating">0.0</span> / 5
+
+<span class="summary-count">
+• <span id="ratingCount">0</span> Ratings
+</span>
+
+</div>
+</div>
+
+
+<h3 class="rate-title">
+Rate Your Experience
+</h3>
+
+<div class="star-picker" id="starPicker">
+
+<button type="button"
+class="star-btn"
+data-rating="1">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="2">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="3">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="4">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="5">★</button>
+
+</div>
+
+<div id="rateHint" class="rate-hint">
+Tap a star to rate
+</div>
+
+<textarea
+id="reviewText"
+class="review-input"
+maxlength="500"
+placeholder="Write your review..."></textarea>
+
+<br>
+
+<button
+id="postReviewBtn"
+class="review-submit"
+type="button">
+⭐ Post Review
+</button>
+
+<div class="login-note">
+Google login is required only when you post a review.
+</div>
+
+<div id="reviewMessage"
+class="review-message">
+</div>
+
+
+<div class="review-list-title">
+💬 Customer Reviews
+</div>
+
+<div id="reviewList">
+<p style="color:#777;">
+Loading reviews...
+</p>
+</div>
+
+</div>
+</section>
+
+
+<section class="section">
+<h2>About Us</h2>
+<br>
+
+<p>
+Welcome to <b>A1 Spacial Chicken Biryani</b>.
+We serve fresh, hygienic and delicious chicken biryani
+made with premium ingredients and authentic spices.
+</p>
 
 </section>
 
-<section class="section">
-<h2>About Us</h2><br>
-<p>Welcome to <b>A1 Spacial Chicken Biryani</b>. We serve fresh, hygienic and delicious chicken biryani made with premium ingredients and authentic spices.</p>
-</section>
 
 <section class="section">
-<h2>Why Choose Us?</h2><br>
+<h2>Why Choose Us?</h2>
+<br>
+
 <p>✅ Fresh Chicken</p>
 <p>✅ Premium Quality Rice</p>
 <p>✅ Hygienic Kitchen</p>
 <p>✅ Best Taste In Town</p>
+
 </section>
 
+
 <section class="section">
-<h2>📍 Our Location</h2><br>
-<p>Bhadali Kheda Choraha,<br>Kota Bypass,<br>Bhilwara, Rajasthan</p><br>
-<a href="https://maps.app.goo.gl/sco4upYq7ddUt1nPA?g_st=ac" class="btn">
+
+<h2>📍 Our Location</h2>
+<br>
+
+<p>
+Bhadali Kheda Choraha,<br>
+Kota Bypass,<br>
+Bhilwara, Rajasthan
+</p>
+
+<br>
+
+<a
+href="https://maps.app.goo.gl/sco4upYq7ddUt1nPA?g_st=ac"
+class="btn">
 📍 Open in Google Maps
 </a>
+
 </section>
 
+
 <section class="section">
-<h2>💳 Online Payment</h2><br>
+
+<h2>💳 Online Payment</h2>
+<br>
+
 <a href="payment.html" class="btn">
 💳 Pay Online
 </a>
-<p>Pay securely using UPI, Cards & Net Banking</p>
+
+<p>
+Pay securely using UPI, Cards & Net Banking
+</p>
+
 </section>
+
 
 <section class="section">
-<h2>📞 Contact Us</h2><br>
+
+<h2>📞 Contact Us</h2>
+<br>
+
 <p>Mobile : 9119357786</p>
 <p>WhatsApp : 9119357786</p>
+
 </section>
 
+
 <footer>
+
 <h3>A1 Spacial Chicken Biryani</h3>
 <p>Best Taste In Town</p>
 <p>© 2026 All Rights Reserved</p>
+
 </footer>
 
-    <a href="https://wa.me/919119357786" class="whatsapp-float">💬</a>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+
+<a
+href="https://wa.me/919119357786"
+class="whatsapp-float">
+💬
+</a>
+
+
+<script type="module">
 
 import {
-  getFirestore,
-  doc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
-        const firebaseConfig = {
-  apiKey: "AIzaSyD_3VjVywmjNAtf9o89sED9tod07dLwDss",
-  authDomain: "a1-spacial-chicken-biryani.firebaseapp.com",
-  projectId: "a1-spacial-chicken-biryani",
-  storageBucket: "a1-spacial-chicken-biryani.firebasestorage.app",
-  messagingSenderId: "28701793250",
-  appId: "1:28701793250:web:3c5b24a625cd43d09237bb"
+initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+getDocs,
+doc,
+getDoc,
+setDoc,
+serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+apiKey:
+"AIzaSyD_3VjVywmjNAtf9o89sED9tod07dLwDss",
+
+authDomain:
+"a1-spacial-chicken-biryani.firebaseapp.com",
+
+projectId:
+"a1-spacial-chicken-biryani",
+
+storageBucket:
+"a1-spacial-chicken-biryani.firebasestorage.app",
+
+messagingSenderId:
+"28701793250",
+
+appId:
+"1:28701793250:web:3c5b24a625cd43d09237bb"
+
 };
 
+
 const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
 const db = getFirestore(app);
-const settingsRef = doc(db, "settings", "offers");
-        const offerBox = document.getElementById("offerBox");
 
-const snap = await getDoc(settingsRef);
+const provider = new GoogleAuthProvider();
 
-if (snap.exists()) {
 
-    const data = snap.data();
+/* OFFER SYSTEM */
 
-    offerBox.style.display = "block";
+const offerBox =
+document.getElementById("offerBox");
 
-    let html = "<b>🎁 Special Offers</b><br><br>";
+const settingsRef =
+doc(db,"settings","offers");
 
-let liveOffer = false;
+try{
 
-if (data.sundayOffer) {
-    liveOffer = true;
-    html += `<div style="padding:12px 0;">
-🟢 <span style="background:#00c853;color:#fff;padding:3px 8px;border-radius:12px;font-size:14px;">LIVE</span>
+const snap =
+await getDoc(settingsRef);
+
+if(snap.exists()){
+
+const data = snap.data();
+
+offerBox.style.display="block";
+
+let html =
+"<b>🎁 Special Offers</b><br><br>";
+
+let liveOffer=false;
+
+
+if(data.sundayOffer){
+
+liveOffer=true;
+
+html += `
+<div style="padding:12px 0;">
+
+🟢
+<span style="
+background:#00c853;
+color:#fff;
+padding:3px 8px;
+border-radius:12px;
+font-size:14px;">
+LIVE
+</span>
+
 ☀️ <b>Sunday Special Offer</b><br>
-<span style="font-size:16px;">Every Sunday</span>
+
+<span style="font-size:16px;">
+Every Sunday
+</span>
+
 </div>
-<hr style="border:0;border-top:1px solid rgba(255,255,255,.3);margin:12px 0;">`;
-} else {
-    html += "⚪ ☀️ Sunday Special Offer Every Sunday<br>";
+
+<hr style="
+border:0;
+border-top:1px solid rgba(255,255,255,.3);
+margin:12px 0;">
+`;
+
+}else{
+
+html +=
+"⚪ ☀️ Sunday Special Offer Every Sunday<br>";
+
 }
 
-if (data.festivalOffer) {
-    liveOffer = true;
-    html += `<div style="padding:12px 0;">
-🟢 <span style="background:#00c853;color:#fff;padding:3px 8px;border-radius:12px;font-size:14px;">LIVE</span>
+
+if(data.festivalOffer){
+
+liveOffer=true;
+
+html += `
+<div style="padding:12px 0;">
+
+🟢
+<span style="
+background:#00c853;
+color:#fff;
+padding:3px 8px;
+border-radius:12px;
+font-size:14px;">
+LIVE
+</span>
+
 🎉 <b>Festival Offer</b><br>
-<span style="font-size:16px;">On Special Festivals</span>
-</div>`;
-} else {
-    html += "⚪ 🎉 Festival Offers on Special Festivals";
+
+<span style="font-size:16px;">
+On Special Festivals
+</span>
+
+</div>
+`;
+
+}else{
+
+html +=
+"⚪ 🎉 Festival Offers on Special Festivals";
+
 }
+
 
 if(liveOffer){
-    html =
-    "<div style='background:#b00000;color:#fff;padding:6px 14px;border-radius:20px;display:inline-block;font-size:14px;font-weight:bold;margin-bottom:12px;'>🔴 LIVE OFFERS</div><br><br>"
-    + html;
+
+html =
+"<div style='background:#b00000;color:#fff;padding:6px 14px;border-radius:20px;display:inline-block;font-size:14px;font-weight:bold;margin-bottom:12px;'>🔴 LIVE OFFERS</div><br><br>"
++
+html;
+
 }
 
-    offerBox.innerHTML = html;
+offerBox.innerHTML=html;
+
 }
 
-    </script>
+}catch(error){
+
+console.error("Offer error:",error);
+
+}
+
+
+/* REVIEW SYSTEM */
+
+const starButtons =
+[
+...document.querySelectorAll(
+"#starPicker .star-btn"
+)
+];
+
+const rateHint =
+document.getElementById("rateHint");
+
+const reviewText =
+document.getElementById("reviewText");
+
+const postReviewBtn =
+document.getElementById("postReviewBtn");
+
+const reviewMessage =
+document.getElementById("reviewMessage");
+
+const reviewList =
+document.getElementById("reviewList");
+
+const averageRating =
+document.getElementById("averageRating");
+
+const ratingCount =
+document.getElementById("ratingCount");
+
+const summaryStars =
+document.getElementById("summaryStars");
+
+
+let selectedRating=0;
+
+let currentUser=null;
+
+
+function showMessage(message,success=false){
+
+reviewMessage.textContent=message;
+
+reviewMessage.style.color =
+success ? "#087f23" : "#b00000";
+
+}
+
+
+function updateStars(){
+
+starButtons.forEach(button=>{
+
+const rating =
+Number(button.dataset.rating);
+
+button.classList.toggle(
+"active",
+rating<=selectedRating
+);
+
+});
+
+
+const labels=[
+
+"",
+
+"Very bad",
+
+"Bad",
+
+"Okay",
+
+"Good",
+
+"Excellent"
+
+];
+
+rateHint.textContent =
+selectedRating
+? labels[selectedRating]
+: "Tap a star to rate";
+
+}
+
+
+starButtons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+selectedRating =
+Number(button.dataset.rating);
+
+updateStars();
+
+});
+
+});
+
+
+function makeStars(rating){
+
+const rounded =
+Math.round(Number(rating)||0);
+
+let result="";
+
+for(let i=1;i<=5;i++){
+
+result +=
+i<=rounded ? "★" : "☆";
+
+}
+
+return result;
+
+}
+
+
+function formatDate(timestamp){
+
+if(!timestamp || !timestamp.toDate)
+return "";
+
+return timestamp
+.toDate()
+.toLocaleDateString(
+"en-IN",
+{
+day:"2-digit",
+month:"short",
+year:"numeric"
+}
+);
+
+}
+
+
+async function loadReviews(){
+
+try{
+
+const snap =
+await getDocs(
+collection(db,"customerReviews")
+);
+
+const reviews=[];
+
+snap.forEach(item=>{
+
+const data=item.data();
+
+if(
+Number(data.rating)>=1 &&
+Number(data.rating)<=5 &&
+typeof data.review==="string"
+){
+
+reviews.push({
+id:item.id,
+...data
+});
+
+}
+
+});
+
+
+const total =
+reviews.reduce(
+(sum,item)=>
+sum+Number(item.rating),
+0
+);
+
+
+const average =
+reviews.length
+? total/reviews.length
+: 0;
+
+
+averageRating.textContent =
+average
+? average.toFixed(1)
+: "0.0";
+
+
+ratingCount.textContent =
+reviews.length;
+
+
+summaryStars.textContent =
+makeStars(average);
+
+
+reviews.sort((a,b)=>{
+
+const aTime =
+a.createdAt?.toMillis
+? a.createdAt.toMillis()
+: 0;
+
+const bTime =
+b.createdAt?.toMillis
+? b.createdAt.toMillis()
+: 0;
+
+return bTime-aTime;
+
+});
+
+
+reviewList.innerHTML="";
+
+
+if(!reviews.length){
+
+reviewList.innerHTML=
+'<p style="color:#777;">Abhi tak koi review nahi hai. Aap pehla review de sakte hain. ⭐</p>';
+
+return;
+
+}
+
+
+reviews
+.slice(0,20)
+.forEach(item=>{
+
+const box=
+document.createElement("div");
+
+box.className="review-item";
+
+
+const stars=
+document.createElement("div");
+
+stars.className=
+"review-item-stars";
+
+stars.textContent=
+makeStars(item.rating);
+
+
+const name=
+document.createElement("div");
+
+name.className=
+"review-item-name";
+
+name.textContent=
+item.name || "Google User";
+
+
+const text=
+document.createElement("div");
+
+text.className=
+"review-item-text";
+
+text.textContent=
+item.review;
+
+
+const date=
+document.createElement("div");
+
+date.className=
+"review-item-date";
+
+date.textContent=
+formatDate(item.createdAt);
+
+
+box.append(
+stars,
+name,
+text,
+date
+);
+
+
+reviewList.appendChild(box);
+
+});
+
+}catch(error){
+
+console.error(error);
+
+reviewList.innerHTML=
+'<p style="color:#b00000;">Reviews load nahi ho pa rahe.</p>';
+
+}
+
+}
+
+
+/* CHECK LOGIN */
+
+onAuthStateChanged(
+auth,
+async user=>{
+
+currentUser=user;
+
+if(user){
+
+try{
+
+const oldReview =
+await getDoc(
+doc(
+db,
+"customerReviews",
+user.uid
+)
+);
+
+
+if(oldReview.exists()){
+
+const data =
+oldReview.data();
+
+selectedRating =
+Number(data.rating)||0;
+
+reviewText.value =
+data.review || "";
+
+updateStars();
+
+postReviewBtn.textContent =
+"⭐ Update Review";
+
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+}
+);
+
+
+/* POST REVIEW */
+
+postReviewBtn.addEventListener(
+"click",
+async()=>{
+
+showMessage("");
+
+if(!selectedRating){
+
+showMessage(
+"Please pehle star rating select karein."
+);
+
+return;
+
+}
+
+
+const review =
+reviewText.value.trim();
+
+
+if(!review){
+
+showMessage(
+"Please apna review likhein."
+);
+
+reviewText.focus();
+
+return;
+
+}
+
+
+if(review.length<3){
+
+showMessage(
+"Review thoda sa detail mein likhein."
+);
+
+return;
+
+}
+
+
+postReviewBtn.disabled=true;
+
+postReviewBtn.textContent=
+"Please wait...";
+
+
+try{
+
+
+/* GOOGLE LOGIN */
+
+if(!currentUser){
+
+showMessage(
+"Google Login open ho raha hai..."
+);
+
+await signInWithPopup(
+auth,
+provider
+);
+
+currentUser =
+auth.currentUser;
+
+}
+
+
+if(!currentUser){
+
+throw new Error(
+"Google Login failed"
+);
+
+}
+
+
+/* SAVE REVIEW */
+
+await setDoc(
+
+doc(
+db,
+"customerReviews",
+currentUser.uid
+),
+
+{
+
+uid:
+currentUser.uid,
+
+name:
+currentUser.displayName
+|| "Google User",
+
+rating:
+selectedRating,
+
+review:
+review,
+
+createdAt:
+serverTimestamp()
+
+},
+
+{merge:true}
+
+);
+
+
+showMessage(
+"Review successfully post ho gaya! ⭐",
+true
+);
+
+
+postReviewBtn.textContent=
+"⭐ Update Review";
+
+
+await loadReviews();
+
+
+}catch(error){
+
+console.error(error);
+
+if(
+error.code===
+"auth/popup-closed-by-user"
+){
+
+showMessage(
+"Google Login cancel ho gaya."
+);
+
+}else if(
+error.code===
+"auth/popup-blocked"
+){
+
+showMessage(
+"Google Login popup block ho gaya. Browser popup allow karke dobara try karein."
+);
+
+}else{
+
+showMessage(
+"Review post nahi ho paya. Please dobara try karein."
+);
+
+}
+
+
+postReviewBtn.textContent =
+currentUser
+? "⭐ Update Review"
+: "⭐ Post Review";
+
+}finally{
+
+postReviewBtn.disabled=false;
+
+}
+
+});
+
+
+loadReviews();
+
+</script>
+
 </body>
 </html>
