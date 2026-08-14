@@ -12,14 +12,73 @@ header{background:#8B0000;color:#fff;text-align:center;padding:20px;}
 header h1{font-size:34px;}
 header p{margin-top:8px;font-size:16px;}
 
-.hero{
-background:linear-gradient(135deg,#ff9800,#ff5722);
-padding:60px 20px;
+  .hero{
+position:relative;
+overflow:hidden;
+padding:52px 20px 46px;
 text-align:center;
 color:#fff;
+background:
+radial-gradient(circle at 15% 20%,rgba(255,215,100,.18),transparent 28%),
+radial-gradient(circle at 85% 80%,rgba(255,120,0,.18),transparent 30%),
+linear-gradient(135deg,#5f0000 0%,#8b0000 48%,#a91500 100%);
+border:1px solid rgba(255,215,100,.45);
+box-shadow:0 8px 28px rgba(0,0,0,.28);
 }
-.hero h2{font-size:40px;margin-bottom:15px;}
-.hero p{font-size:20px;margin-bottom:20px;}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:12px;
+border:1px solid rgba(255,215,120,.35);
+border-radius:24px;
+pointer-events:none;
+}
+
+.hero h2{
+position:relative;
+font-size:clamp(34px,8vw,48px);
+margin-bottom:12px;
+font-weight:800;
+letter-spacing:.5px;
+color:#ffd76a;
+text-shadow:0 3px 12px rgba(0,0,0,.35);
+}
+
+.hero h2::after{
+content:"";
+display:block;
+width:72px;
+height:3px;
+margin:14px auto 0;
+border-radius:10px;
+background:linear-gradient(90deg,#ffd76a,#fff2b0,#ffd76a);
+}
+
+.hero p{
+position:relative;
+font-size:18px;
+line-height:1.6;
+margin:18px auto 24px;
+max-width:520px;
+color:#fff8df;
+}
+
+.hero .btn{
+position:relative;
+min-width:150px;
+padding:13px 22px;
+margin:6px 4px;
+border:1px solid #ffd76a;
+border-radius:16px;
+box-shadow:0 7px 18px rgba(0,0,0,.28);
+transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.hero .btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
 
 .btn{
 display:inline-block;
@@ -255,11 +314,36 @@ style="width:100%;height:auto;display:block;object-fit:contain;">
 </section>
 
 <section class="hero">
+
+<div style="position:relative;z-index:1;">
+
+<div style="
+font-size:13px;
+letter-spacing:2.5px;
+font-weight:bold;
+color:#ffd76a;
+margin-bottom:8px;">
+A1 SPECIAL CHICKEN BIRYANI
+</div>
+
 <h2>Best Taste In Town</h2>
+
 <p>Fresh • Hygienic • Delicious Chicken Biryani</p>
 
-<a href="tel:9119357786" class="btn">📞 Call Now</a>
-<a href="https://wa.me/919119357786" class="btn">💬 WhatsApp</a>
+<div>
+
+<a href="tel:9119357786" class="btn">
+📞 Call Now
+</a>
+
+<a href="https://wa.me/919119357786" class="btn">
+💬 WhatsApp
+</a>
+
+</div>
+
+</div>
+
 </section>
 
 <div id="offerBox"
