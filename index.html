@@ -295,6 +295,45 @@ margin-top:12px;
 font-size:14px;
 min-height:20px;
 }
+  /* BEST TASTE IMAGE SECTION */
+.hero{
+  position:relative;
+  width:100%;
+  padding:0;
+  margin:0;
+  overflow:hidden;
+  background:#5f0000;
+  border:0;
+  box-shadow:none;
+}
+
+.hero img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.hero-call,
+.hero-whatsapp{
+  position:absolute;
+  display:block;
+  z-index:5;
+  text-decoration:none;
+}
+
+.hero-call{
+  left:17.5%;
+  width:28.5%;
+  top:70%;
+  height:22%;
+}
+
+.hero-whatsapp{
+  left:54%;
+  width:29%;
+  top:70%;
+  height:22%;
+}
 </style>
 </head>
 
@@ -313,36 +352,23 @@ alt="A1 Spacial Chicken Biryani"
 style="width:100%;height:auto;display:block;object-fit:contain;">
 </section>
 
-<section class="hero">
+<section class="hero" aria-label="Best Taste In Town">
 
-<div style="position:relative;z-index:1;">
+  <img
+    src="./best-taste-in-town.jpg"
+    alt="A1 Spacial Chicken Biryani - Best Taste In Town">
 
-<div style="
-font-size:13px;
-letter-spacing:2.5px;
-font-weight:bold;
-color:#ffd76a;
-margin-bottom:8px;">
-A1 SPECIAL CHICKEN BIRYANI
-</div>
+  <a
+    href="tel:9119357786"
+    class="hero-call"
+    aria-label="Call Now">
+  </a>
 
-<h2>Best Taste In Town</h2>
-
-<p>Fresh • Hygienic • Delicious Chicken Biryani</p>
-
-<div>
-
-<a href="tel:9119357786" class="btn">
-📞 Call Now
-</a>
-
-<a href="https://wa.me/919119357786" class="btn">
-💬 WhatsApp
-</a>
-
-</div>
-
-</div>
+  <a
+    href="https://wa.me/919119357786"
+    class="hero-whatsapp"
+    aria-label="WhatsApp">
+  </a>
 
 </section>
 
