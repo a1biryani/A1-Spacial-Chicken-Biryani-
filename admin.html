@@ -162,7 +162,16 @@ onkeyup="searchMobile()"
 </table>
 <script>
 alert("ADMIN HTML LOADED");
+
+window.addEventListener("error", function(e) {
+  alert("JS ERROR: " + e.message);
+});
+
+window.addEventListener("unhandledrejection", function(e) {
+  alert("MODULE ERROR: " + e.reason);
+});
 </script>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import {
