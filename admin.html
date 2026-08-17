@@ -375,7 +375,7 @@ sundayDiscount: Number(document.getElementById("sundayDiscount").value)
         await setDoc(settingsRef, {
     festivalOffer: festivalOffer,
 festivalDiscount: Number(document.getElementById("festivalDiscount").value)
-
+}, { merge: true });
         alert("Saved");
     } catch (e) {
         alert(e.message);
