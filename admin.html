@@ -125,25 +125,17 @@ onkeyup="searchMobile()"
 ☀️ Sunday Offer : OFF 🔴
 </button>
 <label>
-    👥 WhatsApp Group Member Discount (%)
-    <input type="number" id="sundayMemberDiscount" min="0" max="100" value="0">
+    💰 Sunday Discount (%)
+    <input type="number" id="sundayDiscount" min="0" max="100" value="0">
 </label>
 
-<label>
-    👤 Non-Member Discount (%)
-    <input type="number" id="sundayNonMemberDiscount" min="0" max="100" value="0">
-</label>
 <button id="festivalBtn">
 🎉 Festival Offer : OFF 🔴
 </button>
-<label>
-    👥 WhatsApp Group Member Discount (%)
-    <input type="number" id="festivalMemberDiscount" min="0" max="100" value="0">
-</label>
 
 <label>
-    👤 Non-Member Discount (%)
-    <input type="number" id="festivalNonMemberDiscount" min="0" max="100" value="0">
+    💰 Festival Discount (%)
+    <input type="number" id="festivalDiscount" min="0" max="100" value="0">
 </label>
 </div>
 
@@ -234,10 +226,8 @@ let cashback = false;
 let luckyDraw = false;
   let sundayOffer = false;
 let festivalOffer = false;
-  let sundayMemberDiscount = 0;
-let sundayNonMemberDiscount = 0;
-let festivalMemberDiscount = 0;
-let festivalNonMemberDiscount = 0;
+let sundayDiscount = 0;
+let festivalDiscount = 0;
 document.addEventListener("DOMContentLoaded", async () => {
   alert("ADMIN JS START");
  try {
@@ -252,10 +242,8 @@ const cashbackBtn = document.getElementById("cashbackBtn");
   const sundayBtn = document.getElementById("sundayBtn");
   
 const festivalBtn = document.getElementById("festivalBtn");
-  const sundayMemberDiscountInput = document.getElementById("sundayMemberDiscount");
-const sundayNonMemberDiscountInput = document.getElementById("sundayNonMemberDiscount");
-const festivalMemberDiscountInput = document.getElementById("festivalMemberDiscount");
-const festivalNonMemberDiscountInput = document.getElementById("festivalNonMemberDiscount");
+const sundayDiscountInput = document.getElementById("sundayDiscount");
+const festivalDiscountInput = document.getElementById("festivalDiscount");
   alert("अब settings पढ़ने जा रहा हूं");
   const snap = await getDoc(settingsRef);
   alert("settings पढ़ लिया");
@@ -269,15 +257,11 @@ cashback = snap.data().cashback;
   sundayOffer = snap.data().sundayOffer || false;
   
 festivalOffer = snap.data().festivalOffer || false;
-  sundayMemberDiscount = snap.data().sundayMemberDiscount ?? 0;
-sundayNonMemberDiscount = snap.data().sundayNonMemberDiscount ?? 0;
-festivalMemberDiscount = snap.data().festivalMemberDiscount ?? 0;
-festivalNonMemberDiscount = snap.data().festivalNonMemberDiscount ?? 0;
+sundayDiscount = snap.data().sundayDiscount ?? 0;
+festivalDiscount = snap.data().festivalDiscount ?? 0;
 
-document.getElementById("sundayMemberDiscount").value = sundayMemberDiscount;
-document.getElementById("sundayNonMemberDiscount").value = sundayNonMemberDiscount;
-document.getElementById("festivalMemberDiscount").value = festivalMemberDiscount;
-document.getElementById("festivalNonMemberDiscount").value = festivalNonMemberDiscount;
+sundayDiscountInput.value = sundayDiscount;
+festivalDiscountInput.value = festivalDiscount;
   if (luckyDraw) {
     luckyBtn.innerHTML = "🎁 Lucky Draw : ON 🟢";
 } else {
@@ -357,9 +341,8 @@ try {
 
     try {
         await setDoc(settingsRef, {
-    sundayOffer: sundayOffer,
-    sundayMemberDiscount: Number(document.getElementById("sundayMemberDiscount").value),
-sundayNonMemberDiscount: Number(document.getElementById("sundayNonMemberDiscount").value)
+sundayOffer: sundayOffer,
+sundayDiscount: Number(document.getElementById("sundayDiscount").value)
 }, { merge: true });
 
         alert("Saved");
@@ -380,9 +363,7 @@ sundayNonMemberDiscount: Number(document.getElementById("sundayNonMemberDiscount
     try {
         await setDoc(settingsRef, {
     festivalOffer: festivalOffer,
-    festivalMemberDiscount: Number(document.getElementById("festivalMemberDiscount").value),
-festivalNonMemberDiscount: Number(document.getElementById("festivalNonMemberDiscount").value)
-}, { merge: true });
+festivalDiscount: Number(document.getElementById("festivalDiscount").value)
 
         alert("Saved");
     } catch (e) {
