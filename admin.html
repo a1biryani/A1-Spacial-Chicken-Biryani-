@@ -164,7 +164,7 @@ onkeyup="searchMobile()"
 alert("ADMIN HTML LOADED");
 
 window.addEventListener("error", function(e) {
-  alert("JS ERROR: " + e.message);
+    alert("JS ERROR: " + e.message + "\nLine: " + e.lineno + "\nColumn: " + e.colno);
 });
 
 window.addEventListener("unhandledrejection", function(e) {
