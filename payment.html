@@ -176,12 +176,7 @@ type="tel"
 id="mobile"
 placeholder="Enter Mobile Number"
 maxlength="10">
-    <h3>WhatsApp Group Member?</h3>
-
-<select id="whatsappMember">
-    <option value="yes">✅ Yes - Group Member</option>
-    <option value="no">❌ No - Non-Member</option>
-</select>
+ 
     <h3>Select Payment Amount</h3>
 
 <select id="amount">
@@ -279,7 +274,7 @@ btn.innerHTML = "💳 Pay Now";
 btn.style.opacity = "1";
     return;
 }
-const memberStatus = document.getElementById("whatsappMember").value;
+
 
 const settingsRef = doc(db, "settings", "offers");
 const offerSnap = await getDoc(settingsRef);
@@ -292,20 +287,14 @@ if (offerSnap.exists()) {
 
     if (offers.festivalOffer) {
         offerName = "Festival Offer";
-
-        discountPercent =
-            memberStatus === "yes"
-            ? Number(offers.festivalMemberDiscount || 0)
-            : Number(offers.festivalNonMemberDiscount || 0);
+discountPercent =
+    Number(offers.festivalDiscount || 0);
 
     } else if (offers.sundayOffer) {
         offerName = "Sunday Offer";
 
-        discountPercent =
-            memberStatus === "yes"
-            ? Number(offers.sundayMemberDiscount || 0)
-            : Number(offers.sundayNonMemberDiscount || 0);
-    }
+discountPercent =
+    Number(offers.sundayDiscount || 0);
 }
 
 const originalAmount = Number(amount);
