@@ -240,7 +240,7 @@ const db = getFirestore(app);
 
 window.payNow = async function () {
     alert("PAY NOW FUNCTION STARTED");
-
+alert("STEP 1 OK");
     const currentDrawSnap = await getDoc(doc(db, "settings", "currentDraw"));
 
     if (currentDrawSnap.exists()) {
