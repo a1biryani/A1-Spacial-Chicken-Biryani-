@@ -235,10 +235,31 @@ alert("MAIN PAYMENT SCRIPT STARTED");
 })();
     </script>
 <script type="module">
+let initializeApp, getFirestore, collection, addDoc, doc, getDoc;
+
+try {
     alert("FIREBASE IMPORT START");
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
-import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-alert("FIREBASE IMPORT DONE");
+
+    const firebaseAppModule =
+        await import("https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js");
+
+    const firebaseFirestoreModule =
+        await import("https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js");
+
+    initializeApp = firebaseAppModule.initializeApp;
+
+    getFirestore = firebaseFirestoreModule.getFirestore;
+    collection = firebaseFirestoreModule.collection;
+    addDoc = firebaseFirestoreModule.addDoc;
+    doc = firebaseFirestoreModule.doc;
+    getDoc = firebaseFirestoreModule.getDoc;
+
+    alert("FIREBASE IMPORT DONE");
+
+} catch (error) {
+    alert("FIREBASE IMPORT ERROR: " + error.message);
+    throw error;
+}
 const firebaseConfig = {
   apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
   authDomain: "a1-spacial-chicken-biryani.firebaseapp.com",
