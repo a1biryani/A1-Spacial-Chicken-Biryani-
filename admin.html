@@ -161,7 +161,6 @@ onkeyup="searchMobile()"
 
 </table>
 <script>
-alert("ADMIN HTML LOADED");
 
 window.addEventListener("error", function(e) {
     alert("JS ERROR: " + e.message + "\nLine: " + e.lineno + "\nColumn: " + e.colno);
@@ -240,7 +239,6 @@ let festivalOffer = false;
 let sundayDiscount = 0;
 let festivalDiscount = 0;
 document.addEventListener("DOMContentLoaded", async () => {
-  alert("ADMIN JS START");
  try {
     await loadActiveDraw();
 } catch (e) {
@@ -255,9 +253,7 @@ const cashbackBtn = document.getElementById("cashbackBtn");
 const festivalBtn = document.getElementById("festivalBtn");
 const sundayDiscountInput = document.getElementById("sundayDiscount");
 const festivalDiscountInput = document.getElementById("festivalDiscount");
-  alert("अब settings पढ़ने जा रहा हूं");
   const snap = await getDoc(settingsRef);
-  alert("settings पढ़ लिया");
 
 if (snap.exists()) {
 
