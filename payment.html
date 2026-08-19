@@ -221,45 +221,12 @@ Secure Payment using Razorpay
 </p>
 
 </div>
-    <script type="module">
-alert("MAIN PAYMENT SCRIPT STARTED");
-    </script>
-    <script type="module">
-(async function () {
-  try {
-    await import("https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js");
-    alert("FIREBASE APP IMPORT OK");
-  } catch (error) {
-    alert("FIREBASE APP ERROR: " + error.message);
-  }
-})();
-    </script>
+
+
 <script type="module">
-let initializeApp, getFirestore, collection, addDoc, doc, getDoc;
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
 
-try {
-    alert("FIREBASE IMPORT START");
-
-    const firebaseAppModule =
-        await import("https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js");
-
-    const firebaseFirestoreModule =
-        await import("https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js");
-
-    initializeApp = firebaseAppModule.initializeApp;
-
-    getFirestore = firebaseFirestoreModule.getFirestore;
-    collection = firebaseFirestoreModule.collection;
-    addDoc = firebaseFirestoreModule.addDoc;
-    doc = firebaseFirestoreModule.doc;
-    getDoc = firebaseFirestoreModule.getDoc;
-
-    alert("FIREBASE IMPORT DONE");
-
-} catch (error) {
-    alert("FIREBASE IMPORT ERROR: " + error.message);
-    throw error;
-}
 const firebaseConfig = {
   apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
   authDomain: "a1-spacial-chicken-biryani.firebaseapp.com",
@@ -271,122 +238,109 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-    let activeDrawId = "";
-alert("MAIN PAYMENT SCRIPT STARTED");
+
 window.payNow = async function () {
-    alert("PAY NOW FUNCTION STARTED");
-alert("STEP 1 OK");
-    const currentDrawSnap = await getDoc(doc(db, "settings", "currentDraw"));
-
-    if (currentDrawSnap.exists()) {
-        activeDrawId = currentDrawSnap.data().activeDrawId;
-    }
-
-    const btn = document.querySelector(".btn");
-    btn.disabled = true;
-    btn.innerHTML = "⌛ Processing Payment...";
-btn.style.opacity = "0.8";
-
-const selected = document.getElementById("amount").value;
-
-const amount = selected === "custom"
+  const btn = document.querySelector(".btn");
+  const selected = document.getElementById("amount").value;
+  const amount = selected === "custom"
     ? document.getElementById("customAmount").value
     : selected;
-const name = document.getElementById("name").value.trim();
-const mobile = document.getElementById("mobile").value.trim();
+  const name = document.getElementById("name").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
 
-if (mobile.length != 10) {
+  if (!name) {
+    alert("Please enter your name");
+    return;
+  }
+  if (!/^\d{10}$/.test(mobile)) {
     alert("Please enter a valid 10 digit mobile number");
-    btn.disabled = false;
-btn.innerHTML = "💳 Pay Now";
-btn.style.opacity = "1";
     return;
-}
-if (!amount || Number(amount) <= 0) {
+  }
+  if (!amount || Number(amount) <= 0) {
     alert("Please select or enter a valid amount");
-    btn.disabled = false;
-btn.innerHTML = "💳 Pay Now";
-btn.style.opacity = "1";
     return;
-}
+  }
 
+  btn.disabled = true;
+  btn.innerHTML = "⌛ Processing Payment...";
+  btn.style.opacity = "0.8";
 
-const settingsRef = doc(db, "settings", "offers");
-const offerSnap = await getDoc(settingsRef);
+  try {
+    let activeDrawId = "";
+    const currentDrawSnap = await getDoc(doc(db, "settings", "currentDraw"));
+    if (currentDrawSnap.exists()) {
+      activeDrawId = currentDrawSnap.data().activeDrawId || "";
+    }
 
-let discountPercent = 0;
-let offerName = "";
+    const offerSnap = await getDoc(doc(db, "settings", "offers"));
+    let discountPercent = 0;
+    let offerName = "";
 
-if (offerSnap.exists()) {
-    const offers = offerSnap.data();
-
-    if (offers.festivalOffer) {
+    if (offerSnap.exists()) {
+      const offers = offerSnap.data();
+      if (offers.festivalOffer) {
         offerName = "Festival Offer";
-discountPercent =
-    Number(offers.festivalDiscount || 0);
-
-    } else if (offers.sundayOffer) {
+        discountPercent = Number(offers.festivalDiscount || 0);
+      } else if (offers.sundayOffer) {
         offerName = "Sunday Offer";
+        discountPercent = Number(offers.sundayDiscount || 0);
+      }
+    }
 
-discountPercent =
-    Number(offers.sundayDiscount || 0);
-}
+    const originalAmount = Number(amount);
+    const discountAmount = originalAmount * discountPercent / 100;
+    const finalAmount = originalAmount - discountAmount;
 
-const originalAmount = Number(amount);
-const discountAmount = originalAmount * discountPercent / 100;
-const finalAmount = originalAmount - discountAmount;
+    if (discountPercent > 0) {
+      alert(
+        "🎉 " + offerName +
+        "\n\nOriginal Amount: ₹" + originalAmount +
+        "\nDiscount: " + discountPercent + "%" +
+        "\nDiscount Amount: ₹" + discountAmount +
+        "\n\n💰 Final Amount: ₹" + finalAmount
+      );
+    }
 
-alert(
-    "🎉 " + offerName +
-    "\n\nOriginal Amount: ₹" + originalAmount +
-    "\nDiscount: " + discountPercent + "%" +
-    "\nDiscount Amount: ₹" + discountAmount +
-    "\n\n💰 Final Amount: ₹" + finalAmount
-);
-await addDoc(collection(db, "customers"), {
-    name: name,
-    mobile: mobile,
-    amount: Number(amount),
-    time: new Date().toLocaleString()
-});
-    const entryCount = Math.floor(Number(amount) / 100);
+    await addDoc(collection(db, "customers"), {
+      name,
+      mobile,
+      amount: originalAmount,
+      time: new Date().toLocaleString()
+    });
 
-for (let i = 0; i < entryCount; i++) {
-  await addDoc(collection(db, "luckyDrawEntries"), {
-      drawId: activeDrawId,
-    name: name,
-    mobile: mobile,
-    amount: Number(amount),
-    paymentTime: new Date().toISOString(),
-    isValid: true,
-    couponNo: i + 1,
-    totalCoupons: entryCount
-  });
-}
-btn.innerHTML = "✅ Redirecting...";
+    const entryCount = Math.floor(originalAmount / 100);
+    if (activeDrawId && entryCount > 0) {
+      for (let i = 0; i < entryCount; i++) {
+        await addDoc(collection(db, "luckyDrawEntries"), {
+          drawId: activeDrawId,
+          name,
+          mobile,
+          amount: originalAmount,
+          paymentTime: new Date().toISOString(),
+          isValid: true,
+          couponNo: i + 1,
+          totalCoupons: entryCount
+        });
+      }
+    }
 
-const razorpayPage =
-  "https://pages.razorpay.com/pl_TO0jY6tL7fixzX/view?amount=" +
-  Math.round(finalAmount) +
-  "&phone=" + encodeURIComponent(mobile) +
-  "&email=" + encodeURIComponent("ns851245@gmail.com");
+    btn.innerHTML = "✅ Redirecting...";
 
-window.location.href = razorpayPage;
+    const razorpayPage =
+      "https://pages.razorpay.com/pl_TO0jY6tL7fixzX/view?amount=" +
+      Math.round(finalAmount) +
+      "&phone=" + encodeURIComponent(mobile) +
+      "&email=" + encodeURIComponent("ns851245@gmail.com");
 
-if (offerSnap.exists() && offerSnap.data().luckyDraw) {
-alert(
-`🎉 Congratulations ${name}!
-
-✅ Your Lucky Draw Entry has been Registered.
-
-🍀 Best of Luck!
-
-Winner announcement will be made on our WhatsApp Channel.`
-);
-}
+    window.location.href = razorpayPage;
+  } catch (error) {
+    console.error("Payment error:", error);
+    alert("Payment start nahi ho paya. Please try again.");
+    btn.disabled = false;
+    btn.innerHTML = "💳 Pay Now";
+    btn.style.opacity = "1";
+  }
 };
-
-
 </script>
 </body>
 </html>
