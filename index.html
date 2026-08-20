@@ -1551,7 +1551,7 @@ postReviewBtn.textContent =
 
 }
 
-/* Complete the review that was waiting for Google redirect. */
+/* Complete the review that was waiting for Google login. */
 const pendingReview = sessionStorage.getItem("a1_pending_review");
 
 if(pendingReview){
@@ -1668,7 +1668,7 @@ showMessage(
 "Google Login open ho raha hai..."
 );
 
-/* Keep the selected rating/review across the redirect. */
+/* Keep the selected rating/review ready for the login flow. */
 sessionStorage.setItem(
 "a1_pending_review",
 JSON.stringify({
@@ -1677,7 +1677,7 @@ review:review
 })
 );
 
-await signInWithRedirect(
+await signInWithPopup(
 auth,
 provider
 );
