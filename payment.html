@@ -3,396 +3,1756 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Online Payment - A1 Spacial Chicken Biryani</title>
+<title>A1 Spacial Chicken Biryani</title>
 
 <style>
-body{
-    font-family:Arial,sans-serif;
-    background:#fff8f0;
-    margin:0;
-    padding:20px;
-    text-align:center;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#fff8f0;color:#333;}
+header{background:#8B0000;color:#fff;text-align:center;padding:20px;}
+header h1{font-size:34px;}
+header p{margin-top:8px;font-size:16px;}
+
+  .hero{
+position:relative;
+overflow:hidden;
+padding:52px 20px 46px;
+text-align:center;
+color:#fff;
+background:
+radial-gradient(circle at 15% 20%,rgba(255,215,100,.18),transparent 28%),
+radial-gradient(circle at 85% 80%,rgba(255,120,0,.18),transparent 30%),
+linear-gradient(135deg,#5f0000 0%,#8b0000 48%,#a91500 100%);
+border:1px solid rgba(255,215,100,.45);
+box-shadow:0 8px 28px rgba(0,0,0,.28);
 }
 
-.container{
-    max-width:500px;
-    margin:auto;
-    background:#ffffff;
-    padding:30px;
-    border-radius:24px;
-    border:2px solid #ffe0b2;
-    box-shadow:0 15px 35px rgba(0,0,0,.18);
+.hero::before{
+content:"";
+position:absolute;
+inset:12px;
+border:1px solid rgba(255,215,120,.35);
+border-radius:24px;
+pointer-events:none;
 }
 
-h1{
-    color:#8B0000;
+.hero h2{
+position:relative;
+font-size:clamp(34px,8vw,48px);
+margin-bottom:12px;
+font-weight:800;
+letter-spacing:.5px;
+color:#ffd76a;
+text-shadow:0 3px 12px rgba(0,0,0,.35);
 }
 
-input{
-    width:90%;
-    padding:16px;
-    margin-top:20px;
-    font-size:18px;
-    border:2px solid #ffd180;
-    border-radius:16px;
-    background:#fffaf5;
-    outline:none;
-    transition:.2s;
-    box-shadow:0 4px 12px rgba(255,152,0,.08);
-}
-
-input:focus{
-    border-color:#ff9800;
-    box-shadow:0 0 0 4px rgba(255,152,0,.15);
-}
-select{
-width:90%;
-padding:16px;
-margin-top:20px;
-font-size:18px;
-border:2px solid #ffd180;
-border-radius:16px;
-background:#fffaf5;
-outline:none;
-box-shadow:0 4px 12px rgba(255,152,0,.08);
-transition:.2s;
-cursor:pointer;
-}
-
-select:focus{
-border-color:#ff9800;
-box-shadow:0 0 0 4px rgba(255,152,0,.15);
-}
-.btn{
+.hero h2::after{
+content:"";
 display:block;
-width:100%;
-margin-top:25px;
-background:linear-gradient(135deg,#ff9800,#ff5722);
+width:72px;
+height:3px;
+margin:14px auto 0;
+border-radius:10px;
+background:linear-gradient(90deg,#ffd76a,#fff2b0,#ffd76a);
+}
+
+.hero p{
+position:relative;
+font-size:18px;
+line-height:1.6;
+margin:18px auto 24px;
+max-width:520px;
+color:#fff8df;
+}
+
+.hero .btn{
+position:relative;
+min-width:150px;
+padding:13px 22px;
+margin:6px 4px;
+border:1px solid #ffd76a;
+border-radius:16px;
+box-shadow:0 7px 18px rgba(0,0,0,.28);
+transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.hero .btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 24px rgba(0,0,0,.35);
+}
+
+.btn{
+display:inline-block;
+padding:12px 25px;
+margin:10px;
+background:#8B0000;
 color:#fff;
 text-decoration:none;
-padding:20px;
-border:none;
-border-radius:20px;
-font-size:28px;
+border-radius:8px;
 font-weight:bold;
-letter-spacing:0.5px;
-cursor:pointer;
-box-shadow:0 12px 30px rgba(255,87,34,.35);
-transition:all .3s ease;
 }
 
-.btn:hover{
-transform:translateY(-2px);
-box-shadow:0 18px 40px rgba(255,87,34,.45);
+.section{padding:40px 20px;text-align:center;}
+
+.menu-box{
+background:#fff8e8;
+border:2px solid #ff9800;
+border-radius:10px;
+padding:15px;
+font-size:20px;
+line-height:2;
 }
 
-.btn:active{
-transform:scale(.97);
-box-shadow:0 6px 15px rgba(255,87,34,.25);
+footer{
+background:#222;
+color:#fff;
+padding:20px;
+text-align:center;
+margin-top:30px;
 }
 
-.note{
-    margin-top:20px;
-    color:#555;
-}
-</style>
-
-</head>
-<body>
-
-<div class="container">
-
-<h1>🍗 A1 Spacial Chicken Biryani</h1>
-    <div style="
-background:#fff7f0;
-border:2px solid #ffe0b2;
-border-radius:18px;
-padding:16px;
-margin:20px 0;
-display:flex;
-align-items:center;
-justify-content:space-between;
-box-shadow:0 6px 15px rgba(0,0,0,.08);
-">
-
-<div style="display:flex;align-items:center;">
-<div style="
-width:50px;
-height:50px;
+.whatsapp-float{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:white;
+width:60px;
+height:60px;
 border-radius:50%;
-background:#ff9800;
 display:flex;
 align-items:center;
 justify-content:center;
+font-size:30px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+z-index:999;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+/* REVIEWS */
+.review-section{
+padding:40px 15px;
+text-align:center;
+}
+
+.review-card{
+max-width:620px;
+margin:0 auto;
+background:#fff;
+border:1px solid #eee;
+border-radius:24px;
+padding:25px 18px;
+box-shadow:0 4px 18px rgba(0,0,0,.08);
+}
+
+.review-title{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.review-subtitle{
+font-size:18px;
+color:#666;
+margin-bottom:22px;
+}
+
+.rating-summary{
+background:#fff8e8;
+border:1px solid #f0d98a;
+border-radius:18px;
+padding:20px;
+margin-bottom:22px;
+}
+
+.summary-stars{
+font-size:34px;
+color:#ffb400;
+letter-spacing:3px;
+}
+
+.summary-score{
 font-size:24px;
-margin-right:12px;">
-🔒
-</div>
+font-weight:bold;
+margin-top:5px;
+}
 
-<div style="text-align:left;">
-<div style="font-size:20px;font-weight:bold;color:#222;">
-Secure Payment
-</div>
-<div style="font-size:14px;color:#666;">
-Pay safely using Razorpay
-</div>
-</div>
-</div>
+.summary-count{
+color:#777;
+font-weight:normal;
+font-size:16px;
+}
 
-<div style="
-background:#00c853;
-color:#fff;
-padding:8px 12px;
+.rate-title{
+font-size:24px;
+margin-bottom:14px;
+}
+
+.star-picker{
+display:flex;
+justify-content:center;
+gap:8px;
+margin:8px 0 6px;
+}
+
+.star-btn{
+border:0;
+background:transparent;
+color:#ccc;
+font-size:42px;
+line-height:1;
+cursor:pointer;
+padding:0;
+}
+
+.star-btn.active{
+color:#ffb400;
+}
+
+.rate-hint{
+color:#777;
+margin-bottom:16px;
+}
+
+.review-input{
+width:100%;
+min-height:120px;
+border:1px solid #ddd;
 border-radius:14px;
+padding:14px;
+font-size:17px;
+resize:vertical;
+}
+
+.review-submit{
+border:0;
+background:#b00000;
+color:#fff;
+padding:13px 28px;
+border-radius:10px;
+font-size:17px;
+font-weight:bold;
+margin-top:15px;
+cursor:pointer;
+}
+
+.review-submit:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.login-note{
+margin-top:10px;
 font-size:13px;
-font-weight:bold;">
-100% Secure
+color:#777;
+}
+
+.review-list-title{
+text-align:left;
+font-size:22px;
+margin:28px 0 12px;
+}
+
+.review-item{
+text-align:left;
+background:#fffaf2;
+border:1px solid #eee1cf;
+border-radius:14px;
+padding:14px;
+margin-top:10px;
+}
+
+.review-item-stars{
+color:#ffb400;
+font-size:20px;
+letter-spacing:1px;
+}
+
+.review-item-name{
+font-weight:bold;
+margin-top:7px;
+}
+
+.review-item-text{
+font-size:16px;
+line-height:1.5;
+margin-top:6px;
+white-space:pre-wrap;
+overflow-wrap:anywhere;
+}
+
+.review-item-date{
+font-size:12px;
+color:#888;
+margin-top:7px;
+}
+
+.review-message{
+margin-top:12px;
+font-size:14px;
+min-height:20px;
+}
+  /* BEST TASTE IMAGE SECTION */
+.hero{
+  position:relative;
+  width:100%;
+  padding:0;
+  margin:0;
+  overflow:visible;
+  background:#5f0000;
+  border:0;
+  box-shadow:none;
+}
+
+.hero img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+
+.hero-call,
+.hero-whatsapp{
+  position:absolute;
+  display:block;
+  z-index:5;
+  text-decoration:none;
+  touch-action:pan-y;
+}
+
+.hero-call{
+  left:17.5%;
+  width:28.5%;
+  top:70%;
+  height:22%;
+}
+
+.hero-whatsapp{
+  left:54%;
+  width:29%;
+  top:70%;
+  height:22%;
+}
+</style>
+</head>
+
+<body>
+
+<header style="display:none;">
+<h1>A1 Spacial Chicken Biryani</h1>
+<p>Bhadali Kheda Choraha, Kota Bypass, Bhilwara (Raj.)</p>
+<p>Shop Open : 9:00 AM</p>
+</header>
+
+<section style="text-align:center;padding:0;">
+<img
+src="./a1-top-menu-1.jpg"
+alt="A1 Spacial Chicken Biryani"
+style="width:100%;height:auto;display:block;object-fit:contain;">
+  
+<section class="hero" aria-label="Best Taste In Town">
+
+  <img
+    src="./best-taste-in-town.jpg"
+    alt="A1 Spacial Chicken Biryani - Best Taste In Town">
+
+  <a
+    href="tel:9119357786"
+    class="hero-call"
+    aria-label="Call Now">
+  </a>
+
+  <a
+    href="https://wa.me/919119357786"
+    class="hero-whatsapp"
+    aria-label="WhatsApp">
+  </a>
+
+</section>
+
+<div id="offerBox"
+style="
+display:none;
+background:
+radial-gradient(circle at top,rgba(255,215,80,.22),transparent 35%),
+linear-gradient(145deg,#4d0000,#8b0000 50%,#b8860b);
+color:#fff;
+padding:30px 20px;
+margin:20px;
+border-radius:24px;
+text-align:center;
+font-size:20px;
+font-weight:bold;
+box-shadow:0 10px 30px rgba(0,0,0,.28);
+border:2px solid #e6b94a;
+line-height:1.8;
+animation:fadeIn 0.8s ease;
+">
 </div>
 
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 20px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:42px;
+      margin-bottom:8px;
+    ">
+      🚚
     </div>
 
-<h2 style="color:#8B0000;margin-top:25px;margin-bottom:10px;">
-🔒 Secure Checkout
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:14px;
+    ">
+      Online Delivery
+    </h2>
+
+    <div style="
+      display:inline-block;
+      background:#e6b94a;
+      color:#4d0000;
+      padding:6px 16px;
+      border-radius:20px;
+      font-size:14px;
+      font-weight:bold;
+      letter-spacing:1px;
+      margin-bottom:18px;
+    ">
+      COMING SOON
+    </div>
+
+    <p style="
+      font-size:17px;
+      line-height:1.6;
+      color:#fff8df;
+      margin-bottom:12px;
+    ">
+      A1 Spacial Chicken Biryani ki
+      online delivery service jald hi shuru hogi.
+    </p>
+
+    <p style="
+      font-size:15px;
+      color:#ffe9a8;
+      margin:0;
+    ">
+      Swiggy &amp; Zomato integration coming soon
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- RATING & REVIEWS -->
+
+<section class="review-section" id="reviews">
+
+<div class="review-card">
+
+<div style="
+font-size:14px;
+letter-spacing:3px;
+color:#a06a00;
+font-weight:bold;">
+A1 CUSTOMER EXPERIENCE
+</div>
+
+<h2 class="review-title">
+⭐ Rating & Customer Reviews
 </h2>
 
-<p style="
-color:#666;
-font-size:17px;
-margin-top:0;
-margin-bottom:25px;
-line-height:1.5;">
-Complete your order safely in just a few seconds.
+<p class="review-subtitle">
+Share your experience with A1 Spacial Chicken Biryani
 </p>
 
-<p>Please enter your mobile number before payment.</p>
-<input
-  type="text"
-  id="name"
-  placeholder="Enter Your Name"
-  maxlength="40"
-  style="width:100%;padding:12px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
-<input
-type="tel"
-id="mobile"
-placeholder="Enter Mobile Number"
-maxlength="10">
- 
-    <h3>Select Payment Amount</h3>
 
-<!-- Amount selector: grid prevents accidental default payment -->
-<select id="amount" style="display:none;">
-  <option value="" selected disabled>Select amount</option>
-  <option value="50">₹50</option>
-  <option value="100">₹100</option>
-  <option value="150">₹150</option>
-  <option value="200">₹200</option>
-  <option value="250">₹250</option>
-  <option value="300">₹300</option>
-  <option value="350">₹350</option>
-  <option value="400">₹400</option>
-  <option value="custom">Other Amount</option>
-</select>
+<div class="rating-summary">
 
-<div id="amountGrid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 14px;">
-  <button type="button" class="amount-option" data-value="50">₹50</button>
-  <button type="button" class="amount-option" data-value="100">₹100</button>
-  <button type="button" class="amount-option" data-value="150">₹150</button>
-  <button type="button" class="amount-option" data-value="200">₹200</button>
-  <button type="button" class="amount-option" data-value="250">₹250</button>
-  <button type="button" class="amount-option" data-value="300">₹300</button>
-  <button type="button" class="amount-option" data-value="350">₹350</button>
-  <button type="button" class="amount-option" data-value="400">₹400</button>
-  <button type="button" class="amount-option" data-value="custom" style="grid-column:1/-1;">Other Amount</button>
+<div id="summaryStars" class="summary-stars">
+☆☆☆☆☆
 </div>
 
-<input
-type="number"
-id="customAmount"
-placeholder="Enter Custom Amount"
-min="1"
-inputmode="numeric"
-style="display:none;width:100%;box-sizing:border-box;">
+<div class="summary-score">
+<span id="averageRating">0.0</span> / 5
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  const amount = document.getElementById("amount");
-  const custom = document.getElementById("customAmount");
-  const payButton = document.querySelector(".btn");
-  const options = document.querySelectorAll(".amount-option");
+<span class="summary-count">
+• <span id="ratingCount">0</span> Ratings
+</span>
 
-  payButton.disabled = true;
-  payButton.style.opacity = "0.55";
-  payButton.style.cursor = "not-allowed";
+</div>
+</div>
 
-  options.forEach(function (option) {
-    option.style.cssText += ";width:100%;padding:13px 10px;border:2px solid #ff9800;border-radius:10px;background:#fff;font-size:17px;font-weight:700;color:#8B0000;cursor:pointer;";
 
-    option.addEventListener("click", function () {
-      options.forEach(function (item) {
-        item.style.background = "#fff";
-        item.style.color = "#8B0000";
-      });
+<h3 class="rate-title">
+Rate Your Experience
+</h3>
 
-      option.style.background = "#ff9800";
-      option.style.color = "#fff";
-      amount.value = option.dataset.value;
+<div class="star-picker" id="starPicker">
 
-      if (option.dataset.value === "custom") {
-        custom.style.display = "block";
-        custom.focus();
-        payButton.disabled = true;
-        payButton.style.opacity = "0.55";
-        payButton.style.cursor = "not-allowed";
-      } else {
-        custom.style.display = "none";
-        custom.value = "";
-        payButton.disabled = false;
-        payButton.style.opacity = "1";
-        payButton.style.cursor = "pointer";
-      }
-    });
-  });
+<button type="button"
+class="star-btn"
+data-rating="1">★</button>
 
-  custom.addEventListener("input", function () {
-    const valid = amount.value === "custom" && Number(custom.value) > 0;
-    payButton.disabled = !valid;
-    payButton.style.opacity = valid ? "1" : "0.55";
-    payButton.style.cursor = valid ? "pointer" : "not-allowed";
-  });
-});
-</script>
-<button class="btn" onclick="window.payNow()" disabled style="opacity:0.55;cursor:not-allowed;">
-💳 Pay Now
+<button type="button"
+class="star-btn"
+data-rating="2">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="3">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="4">★</button>
+
+<button type="button"
+class="star-btn"
+data-rating="5">★</button>
+
+</div>
+
+<div id="rateHint" class="rate-hint">
+Tap a star to rate
+</div>
+
+<textarea
+id="reviewText"
+class="review-input"
+maxlength="500"
+placeholder="Write your review..."></textarea>
+
+<br>
+
+<button
+id="postReviewBtn"
+class="review-submit"
+type="button">
+⭐ Post Review
 </button>
 
+<div class="login-note">
+Google login is required only when you post a review.
+</div>
 
-<p class="note">
+<div id="reviewMessage"
+class="review-message">
+</div>
 
-Secure Payment using Razorpay
 
+<div class="review-list-title">
+💬 Customer Reviews
+</div>
+
+<div id="reviewList">
+<p style="color:#777;">
+Loading reviews...
 </p>
+</div>
 
 </div>
+</section>
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 20px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:40px;
+      margin-bottom:8px;
+    ">
+      💬
+    </div>
+
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:16px;
+    ">
+      Join Our WhatsApp Group
+    </h2>
+
+    <p style="
+      font-size:17px;
+      line-height:1.7;
+      color:#fff8df;
+      margin-bottom:18px;
+    ">
+      🎁 Special Offers<br>
+      🎉 Festival Offers<br>
+      🎟️ Lucky Draw Updates<br>
+      📢 Latest Shop Updates
+    </p>
+
+    <a
+      href="https://chat.whatsapp.com/EGwjrRKWypEEebQQ512wip"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        display:inline-block;
+        background:#25D366;
+        color:#fff;
+        text-decoration:none;
+        padding:13px 24px;
+        border-radius:12px;
+        font-size:17px;
+        font-weight:bold;
+        box-shadow:0 6px 16px rgba(0,0,0,.25);
+      ">
+      💬 JOIN WHATSAPP GROUP
+    </a>
+
+  </div>
+
+</section>
+
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 22px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:38px;
+      margin-bottom:8px;
+    ">
+      🍗
+    </div>
+
+    <div style="
+      color:#e6b94a;
+      font-size:13px;
+      letter-spacing:3px;
+      font-weight:bold;
+      margin-bottom:8px;
+    ">
+      A1 SPACIAL CHICKEN BIRYANI
+    </div>
+
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:16px;
+    ">
+      About Us
+    </h2>
+
+    <div style="
+      width:65px;
+      height:3px;
+      background:#e6b94a;
+      margin:0 auto 18px;
+      border-radius:10px;
+    "></div>
+
+    <p style="
+      font-size:17px;
+      line-height:1.7;
+      color:#fff8df;
+      margin:0;
+    ">
+      Welcome to <b>A1 Spacial Chicken Biryani</b>.
+      We serve fresh, hygienic and delicious chicken biryani
+      made with premium ingredients and authentic spices.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 22px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:38px;
+      margin-bottom:8px;
+    ">
+      ⭐
+    </div>
+
+    <div style="
+      color:#e6b94a;
+      font-size:13px;
+      letter-spacing:3px;
+      font-weight:bold;
+      margin-bottom:8px;
+    ">
+      A1 QUALITY &amp; TASTE
+    </div>
+
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:16px;
+    ">
+      Why Choose Us?
+    </h2>
+
+    <div style="
+      width:65px;
+      height:3px;
+      background:#e6b94a;
+      margin:0 auto 20px;
+      border-radius:10px;
+    "></div>
+
+    <div style="
+      font-size:17px;
+      line-height:2;
+      color:#fff8df;
+      text-align:left;
+      max-width:330px;
+      margin:auto;
+    ">
+      <div>✅ Fresh Chicken</div>
+      <div>✅ Premium Quality Rice</div>
+      <div>✅ Hygienic Kitchen</div>
+      <div>✅ Best Taste In Town</div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:
+      radial-gradient(circle at top,rgba(255,215,100,.18),transparent 35%),
+      linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 22px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:40px;
+      margin-bottom:8px;
+    ">
+      📍
+    </div>
+
+    <div style="
+      color:#e6b94a;
+      font-size:13px;
+      letter-spacing:3px;
+      font-weight:bold;
+      margin-bottom:8px;
+    ">
+      VISIT A1 SPACIAL CHICKEN BIRYANI
+    </div>
+
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:16px;
+    ">
+      Our Location
+    </h2>
+
+    <div style="
+      width:65px;
+      height:3px;
+      background:#e6b94a;
+      margin:0 auto 18px;
+      border-radius:10px;
+    "></div>
+
+    <p style="
+      font-size:17px;
+      line-height:1.8;
+      color:#fff8df;
+      margin:0 0 20px;
+    ">
+      Bhadali Kheda Choraha,<br>
+      Kota Bypass,<br>
+      Bhilwara, Rajasthan
+    </p>
+
+    <a
+      href="https://maps.app.goo.gl/sco4upYq7ddUt1nPA?g_st=ac"
+      target="_blank"
+      rel="noopener noreferrer"
+      style="
+        display:inline-block;
+        background:#e6b94a;
+        color:#4d0000;
+        text-decoration:none;
+        padding:13px 24px;
+        border-radius:12px;
+        font-size:17px;
+        font-weight:bold;
+        box-shadow:0 6px 16px rgba(0,0,0,.25);
+      "
+    >
+      📍 OPEN IN GOOGLE MAPS
+    </a>
+
+  </div>
+
+</section>
+
+
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:
+      radial-gradient(circle at top,rgba(255,215,100,.18),transparent 35%),
+      linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 22px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:40px;
+      margin-bottom:8px;
+    ">
+      💳
+    </div>
+
+    <div style="
+      color:#e6b94a;
+      font-size:13px;
+      letter-spacing:3px;
+      font-weight:bold;
+      margin-bottom:8px;
+    ">
+      FAST & SECURE PAYMENT
+    </div>
+
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:16px;
+    ">
+      Online Payment
+    </h2>
+
+    <div style="
+      width:65px;
+      height:3px;
+      background:#e6b94a;
+      margin:0 auto 18px;
+      border-radius:10px;
+    "></div>
+
+    <p style="
+      font-size:17px;
+      line-height:1.6;
+      color:#fff8df;
+      margin-bottom:20px;
+    ">
+      Pay securely using UPI, Cards &amp; Net Banking
+    </p>
+
+    <a
+      href="payment.html"
+      style="
+        display:inline-block;
+        background:#e6b94a;
+        color:#4d0000;
+        text-decoration:none;
+        padding:13px 28px;
+        border-radius:12px;
+        font-size:18px;
+        font-weight:bold;
+        box-shadow:0 6px 16px rgba(0,0,0,.25);
+      "
+    >
+      💳 PAY ONLINE
+    </a>
+
+  </div>
+
+<section class="section" style="
+  padding:40px 20px;
+">
+
+  <div style="
+    max-width:620px;
+    margin:auto;
+    background:
+      radial-gradient(circle at top,rgba(255,215,100,.18),transparent 35%),
+      linear-gradient(145deg,#4d0000,#8b0000 55%,#5f0000);
+    color:#fff;
+    padding:30px 22px;
+    border-radius:24px;
+    text-align:center;
+    border:2px solid #e6b94a;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  ">
+
+    <div style="
+      font-size:40px;
+      margin-bottom:8px;
+    ">
+      📞
+    </div>
+
+    <div style="
+      color:#e6b94a;
+      font-size:13px;
+      letter-spacing:3px;
+      font-weight:bold;
+      margin-bottom:8px;
+    ">
+      GET IN TOUCH
+    </div>
+
+    <h2 style="
+      color:#ffd76a;
+      font-size:30px;
+      margin-bottom:16px;
+    ">
+      Contact Us
+    </h2>
+
+    <div style="
+      width:65px;
+      height:3px;
+      background:#e6b94a;
+      margin:0 auto 20px;
+      border-radius:10px;
+    "></div>
+
+    <div style="
+      font-size:18px;
+      line-height:2;
+      color:#fff8df;
+    ">
+      📱 Mobile : 9119357786<br>
+      💬 WhatsApp : 9119357786
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+
+<h3>A1 Spacial Chicken Biryani</h3>
+<p>Best Taste In Town</p>
+<p>© 2026 All Rights Reserved</p>
+
+</footer>
+
+
+<a
+href="https://wa.me/919119357786"
+class="whatsapp-float">
+💬
+</a>
 
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
-import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
+import {
+initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
+
+import {
+getAuth,
+GoogleAuthProvider,
+signInWithRedirect,
+onAuthStateChanged
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+getDocs,
+doc,
+getDoc,
+setDoc,
+serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/12.17.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD_3VjVywMjNAtf9o89sED9tod07dLwDss",
-  authDomain: "a1-spacial-chicken-biryani.firebaseapp.com",
-  projectId: "a1-spacial-chicken-biryani",
-  storageBucket: "a1-spacial-chicken-biryani.firebasestorage.app",
-  messagingSenderId: "28701793250",
-  appId: "1:28701793250:web:3c5b24a625cd43d09237bb"
+
+apiKey:
+"AIzaSyD_3VjVywmjNAtf9o89sED9tod07dLwDss",
+
+authDomain:
+"a1-spacial-chicken-biryani.firebaseapp.com",
+
+projectId:
+"a1-spacial-chicken-biryani",
+
+storageBucket:
+"a1-spacial-chicken-biryani.firebasestorage.app",
+
+messagingSenderId:
+"28701793250",
+
+appId:
+"1:28701793250:web:3c5b24a625cd43d09237bb"
+
 };
+
 
 const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
 const db = getFirestore(app);
 
-window.payNow = async function () {
-  const btn = document.querySelector(".btn");
-  const selected = document.getElementById("amount").value;
-  const amount = selected === "custom"
-    ? document.getElementById("customAmount").value
-    : selected;
-  const name = document.getElementById("name").value.trim();
-  const mobile = document.getElementById("mobile").value.trim();
+const provider = new GoogleAuthProvider();
 
-  if (!name) {
-    alert("Please enter your name");
-    return;
-  }
-  if (!/^\d{10}$/.test(mobile)) {
-    alert("Please enter a valid 10 digit mobile number");
-    return;
-  }
-  if (!amount || Number(amount) <= 0) {
-    alert("Please select or enter a valid amount");
-    return;
-  }
 
-  btn.disabled = true;
-  btn.innerHTML = "⌛ Processing Payment...";
-  btn.style.opacity = "0.8";
+/* OFFER SYSTEM */
 
-  try {
-    let activeDrawId = "";
-    const currentDrawSnap = await getDoc(doc(db, "settings", "currentDraw"));
-    if (currentDrawSnap.exists()) {
-      activeDrawId = currentDrawSnap.data().activeDrawId || "";
-    }
+const offerBox =
+document.getElementById("offerBox");
 
-    const offerSnap = await getDoc(doc(db, "settings", "offers"));
-    let discountPercent = 0;
-    let offerName = "";
+const settingsRef =
+doc(db,"settings","offers");
 
-    if (offerSnap.exists()) {
-      const offers = offerSnap.data();
-      if (offers.festivalOffer) {
-        offerName = "Festival Offer";
-        discountPercent = Number(offers.festivalDiscount || 0);
-      } else if (offers.sundayOffer) {
-        offerName = "Sunday Offer";
-        discountPercent = Number(offers.sundayDiscount || 0);
-      }
-    }
+try{
 
-    const originalAmount = Number(amount);
-    const discountAmount = originalAmount * discountPercent / 100;
-    const finalAmount = originalAmount - discountAmount;
+const snap =
+await getDoc(settingsRef);
 
-    if (discountPercent > 0) {
-      alert(
-        "🎉 " + offerName +
-        "\n\nOriginal Amount: ₹" + originalAmount +
-        "\nDiscount: " + discountPercent + "%" +
-        "\nDiscount Amount: ₹" + discountAmount +
-        "\n\n💰 Final Amount: ₹" + finalAmount
-      );
-    }
+if(snap.exists()){
 
-    await addDoc(collection(db, "customers"), {
-      name,
-      mobile,
-      amount: originalAmount,
-      time: new Date().toLocaleString()
-    });
+const data = snap.data();
 
-    const entryCount = Math.floor(originalAmount / 100);
-    if (activeDrawId && entryCount > 0) {
-      for (let i = 0; i < entryCount; i++) {
-        await addDoc(collection(db, "luckyDrawEntries"), {
-          drawId: activeDrawId,
-          name,
-          mobile,
-          amount: originalAmount,
-          paymentTime: new Date().toISOString(),
-          isValid: true,
-          couponNo: i + 1,
-          totalCoupons: entryCount
-        });
-      }
-    }
+offerBox.style.display="block";
 
-    btn.innerHTML = "✅ Redirecting...";
+let html =
+"<b>🎁 Special Offers</b><br><br>";
 
-    const razorpayPage =
-      "https://pages.razorpay.com/pl_TO0jY6tL7fixzX/view?amount=" +
-      Math.round(finalAmount) +
-      "&phone=" + encodeURIComponent(mobile) +
-      "&email=" + encodeURIComponent("ns851245@gmail.com");
+let liveOffer=false;
 
-    window.location.href = razorpayPage;
-  } catch (error) {
-    console.error("Payment error:", error);
-    alert("Payment start nahi ho paya. Please try again.");
-    btn.disabled = false;
-    btn.innerHTML = "💳 Pay Now";
-    btn.style.opacity = "1";
-  }
-};
+
+if(data.sundayOffer){
+
+liveOffer=true;
+
+html += `
+<div style="padding:12px 0;">
+
+🟢
+<span style="
+background:#00c853;
+color:#fff;
+padding:3px 8px;
+border-radius:12px;
+font-size:14px;">
+LIVE
+</span>
+
+☀️ <b>Sunday Special Offer</b><br>
+
+<span style="font-size:16px;">
+Every Sunday
+</span>
+
+</div>
+
+<hr style="
+border:0;
+border-top:1px solid rgba(255,255,255,.3);
+margin:12px 0;">
+`;
+
+}else{
+
+html +=
+"⚪ ☀️ Sunday Special Offer Every Sunday<br>";
+
+}
+
+
+if(data.festivalOffer){
+
+liveOffer=true;
+
+html += `
+<div style="padding:12px 0;">
+
+🟢
+<span style="
+background:#00c853;
+color:#fff;
+padding:3px 8px;
+border-radius:12px;
+font-size:14px;">
+LIVE
+</span>
+
+🎉 <b>Festival Offer</b><br>
+
+<span style="font-size:16px;">
+On Special Festivals
+</span>
+
+</div>
+`;
+
+}else{
+
+html +=
+"⚪ 🎉 Festival Offers on Special Festivals";
+
+}
+
+
+if(liveOffer){
+
+html =
+"<div style='background:#b00000;color:#fff;padding:6px 14px;border-radius:20px;display:inline-block;font-size:14px;font-weight:bold;margin-bottom:12px;'>🔴 LIVE OFFERS</div><br><br>"
++
+html;
+
+}
+
+offerBox.innerHTML=html;
+
+}
+
+}catch(error){
+
+console.error("Offer error:",error);
+
+}
+
+
+/* REVIEW SYSTEM */
+
+const starButtons =
+[
+...document.querySelectorAll(
+"#starPicker .star-btn"
+)
+];
+
+const rateHint =
+document.getElementById("rateHint");
+
+const reviewText =
+document.getElementById("reviewText");
+
+const postReviewBtn =
+document.getElementById("postReviewBtn");
+
+const reviewMessage =
+document.getElementById("reviewMessage");
+
+const reviewList =
+document.getElementById("reviewList");
+
+const averageRating =
+document.getElementById("averageRating");
+
+const ratingCount =
+document.getElementById("ratingCount");
+
+const summaryStars =
+document.getElementById("summaryStars");
+
+
+let selectedRating=0;
+
+let currentUser=null;
+
+
+function showMessage(message,success=false){
+
+reviewMessage.textContent=message;
+
+reviewMessage.style.color =
+success ? "#087f23" : "#b00000";
+
+}
+
+
+function updateStars(){
+
+starButtons.forEach(button=>{
+
+const rating =
+Number(button.dataset.rating);
+
+button.classList.toggle(
+"active",
+rating<=selectedRating
+);
+
+});
+
+
+const labels=[
+
+"",
+
+"Very bad",
+
+"Bad",
+
+"Okay",
+
+"Good",
+
+"Excellent"
+
+];
+
+rateHint.textContent =
+selectedRating
+? labels[selectedRating]
+: "Tap a star to rate";
+
+}
+
+/* Restore the review entered before Google redirect. */
+try{
+const pendingReview =
+sessionStorage.getItem("a1_pending_review");
+
+if(pendingReview){
+const data = JSON.parse(pendingReview);
+
+selectedRating =
+Number(data.rating)||0;
+
+reviewText.value =
+data.review || "";
+
+updateStars();
+}
+}catch(error){
+console.error("Pending review restore error:",error);
+}
+
+
+starButtons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+selectedRating =
+Number(button.dataset.rating);
+
+updateStars();
+
+});
+
+});
+
+
+function makeStars(rating){
+
+const rounded =
+Math.round(Number(rating)||0);
+
+let result="";
+
+for(let i=1;i<=5;i++){
+
+result +=
+i<=rounded ? "★" : "☆";
+
+}
+
+return result;
+
+}
+
+
+function formatDate(timestamp){
+
+if(!timestamp || !timestamp.toDate)
+return "";
+
+return timestamp
+.toDate()
+.toLocaleDateString(
+"en-IN",
+{
+day:"2-digit",
+month:"short",
+year:"numeric"
+}
+);
+
+}
+
+
+async function loadReviews(){
+
+try{
+
+const snap =
+await getDocs(
+collection(db,"customerReviews")
+);
+
+const reviews=[];
+
+snap.forEach(item=>{
+
+const data=item.data();
+
+if(
+Number(data.rating)>=1 &&
+Number(data.rating)<=5 &&
+typeof data.review==="string"
+){
+
+reviews.push({
+id:item.id,
+...data
+});
+
+}
+
+});
+
+
+const total =
+reviews.reduce(
+(sum,item)=>
+sum+Number(item.rating),
+0
+);
+
+
+const average =
+reviews.length
+? total/reviews.length
+: 0;
+
+
+averageRating.textContent =
+average
+? average.toFixed(1)
+: "0.0";
+
+
+ratingCount.textContent =
+reviews.length;
+
+
+summaryStars.textContent =
+makeStars(average);
+
+
+reviews.sort((a,b)=>{
+
+const aTime =
+a.createdAt?.toMillis
+? a.createdAt.toMillis()
+: 0;
+
+const bTime =
+b.createdAt?.toMillis
+? b.createdAt.toMillis()
+: 0;
+
+return bTime-aTime;
+
+});
+
+
+reviewList.innerHTML="";
+
+
+if(!reviews.length){
+
+reviewList.innerHTML=
+'<p style="color:#777;">Abhi tak koi review nahi hai. Aap pehla review de sakte hain. ⭐</p>';
+
+return;
+
+}
+
+
+reviews
+.slice(0,20)
+.forEach(item=>{
+
+const box=
+document.createElement("div");
+
+box.className="review-item";
+
+
+const stars=
+document.createElement("div");
+
+stars.className=
+"review-item-stars";
+
+stars.textContent=
+makeStars(item.rating);
+
+
+const name=
+document.createElement("div");
+
+name.className=
+"review-item-name";
+
+name.textContent=
+item.name || "Google User";
+
+
+const text=
+document.createElement("div");
+
+text.className=
+"review-item-text";
+
+text.textContent=
+item.review;
+
+
+const date=
+document.createElement("div");
+
+date.className=
+"review-item-date";
+
+date.textContent=
+formatDate(item.createdAt);
+
+
+box.append(
+stars,
+name,
+text,
+date
+);
+
+
+reviewList.appendChild(box);
+
+});
+
+}catch(error){
+
+console.error(error);
+
+reviewList.innerHTML=
+'<p style="color:#b00000;">Reviews load nahi ho pa rahe.</p>';
+
+}
+
+}
+
+
+/* CHECK LOGIN */
+
+onAuthStateChanged(
+auth,
+async user=>{
+
+currentUser=user;
+
+if(user){
+
+try{
+
+const oldReview =
+await getDoc(
+doc(
+db,
+"customerReviews",
+user.uid
+)
+);
+
+
+if(oldReview.exists()){
+
+const data =
+oldReview.data();
+
+selectedRating =
+Number(data.rating)||0;
+
+reviewText.value =
+data.review || "";
+
+updateStars();
+
+postReviewBtn.textContent =
+"⭐ Update Review";
+
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+}
+);
+
+
+/* POST REVIEW */
+
+postReviewBtn.addEventListener(
+"click",
+async()=>{
+
+showMessage("");
+
+if(!selectedRating){
+
+showMessage(
+"Please pehle star rating select karein."
+);
+
+return;
+
+}
+
+
+const review =
+reviewText.value.trim();
+
+
+if(!review){
+
+showMessage(
+"Please apna review likhein."
+);
+
+reviewText.focus();
+
+return;
+
+}
+
+
+if(review.length<3){
+
+showMessage(
+"Review thoda sa detail mein likhein."
+);
+
+return;
+
+}
+
+
+postReviewBtn.disabled=true;
+
+postReviewBtn.textContent=
+"Please wait...";
+
+
+try{
+
+
+/* GOOGLE LOGIN */
+
+if(!currentUser){
+
+showMessage(
+"Google Login open ho raha hai..."
+);
+
+/* Keep the selected rating/review across the redirect. */
+sessionStorage.setItem(
+"a1_pending_review",
+JSON.stringify({
+rating:selectedRating,
+review:review
+})
+);
+
+await signInWithRedirect(
+auth,
+provider
+);
+
+return;
+
+}
+
+
+if(!currentUser){
+
+throw new Error(
+"Google Login failed"
+);
+
+}
+
+
+/* SAVE REVIEW */
+
+await setDoc(
+
+doc(
+db,
+"customerReviews",
+currentUser.uid
+),
+
+{
+
+uid:
+currentUser.uid,
+
+name:
+currentUser.displayName
+|| "Google User",
+
+rating:
+selectedRating,
+
+review:
+review,
+
+createdAt:
+serverTimestamp()
+
+},
+
+{merge:true}
+
+);
+
+
+showMessage(
+"Review successfully post ho gaya! ⭐",
+true
+);
+
+sessionStorage.removeItem("a1_pending_review");
+
+
+postReviewBtn.textContent=
+"⭐ Update Review";
+
+
+await loadReviews();
+
+
+}catch(error){
+
+console.error(error);
+
+if(
+error.code===
+"auth/popup-closed-by-user"
+){
+
+showMessage(
+"Google Login cancel ho gaya."
+);
+
+}else if(
+error.code===
+"auth/popup-blocked"
+){
+
+showMessage(
+"Google Login popup block ho gaya. Browser popup allow karke dobara try karein."
+);
+
+}else{
+
+showMessage(
+"Review post nahi ho paya. Please dobara try karein."
+);
+
+}
+
+
+postReviewBtn.textContent =
+currentUser
+? "⭐ Update Review"
+: "⭐ Post Review";
+
+}finally{
+
+postReviewBtn.disabled=false;
+
+}
+
+});
+
+
+loadReviews();
+
 </script>
+
 </body>
 </html>
