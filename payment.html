@@ -179,7 +179,9 @@ maxlength="10">
  
     <h3>Select Payment Amount</h3>
 
-<select id="amount">
+<!-- Amount selector: grid prevents accidental default payment -->
+<select id="amount" style="display:none;">
+  <option value="" selected disabled>Select amount</option>
   <option value="50">₹50</option>
   <option value="100">₹100</option>
   <option value="150">₹150</option>
@@ -191,25 +193,75 @@ maxlength="10">
   <option value="custom">Other Amount</option>
 </select>
 
+<div id="amountGrid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0 14px;">
+  <button type="button" class="amount-option" data-value="50">₹50</button>
+  <button type="button" class="amount-option" data-value="100">₹100</button>
+  <button type="button" class="amount-option" data-value="150">₹150</button>
+  <button type="button" class="amount-option" data-value="200">₹200</button>
+  <button type="button" class="amount-option" data-value="250">₹250</button>
+  <button type="button" class="amount-option" data-value="300">₹300</button>
+  <button type="button" class="amount-option" data-value="350">₹350</button>
+  <button type="button" class="amount-option" data-value="400">₹400</button>
+  <button type="button" class="amount-option" data-value="custom" style="grid-column:1/-1;">Other Amount</button>
+</div>
+
 <input
 type="number"
 id="customAmount"
 placeholder="Enter Custom Amount"
-style="display:none;"
->
+min="1"
+inputmode="numeric"
+style="display:none;width:100%;box-sizing:border-box;">
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const amount = document.getElementById("amount");
   const custom = document.getElementById("customAmount");
+  const payButton = document.querySelector(".btn");
+  const options = document.querySelectorAll(".amount-option");
 
-  amount.onchange = function () {
-    custom.style.display =
-      amount.value === "custom" ? "block" : "none";
-  };
+  payButton.disabled = true;
+  payButton.style.opacity = "0.55";
+  payButton.style.cursor = "not-allowed";
+
+  options.forEach(function (option) {
+    option.style.cssText += ";width:100%;padding:13px 10px;border:2px solid #ff9800;border-radius:10px;background:#fff;font-size:17px;font-weight:700;color:#8B0000;cursor:pointer;";
+
+    option.addEventListener("click", function () {
+      options.forEach(function (item) {
+        item.style.background = "#fff";
+        item.style.color = "#8B0000";
+      });
+
+      option.style.background = "#ff9800";
+      option.style.color = "#fff";
+      amount.value = option.dataset.value;
+
+      if (option.dataset.value === "custom") {
+        custom.style.display = "block";
+        custom.focus();
+        payButton.disabled = true;
+        payButton.style.opacity = "0.55";
+        payButton.style.cursor = "not-allowed";
+      } else {
+        custom.style.display = "none";
+        custom.value = "";
+        payButton.disabled = false;
+        payButton.style.opacity = "1";
+        payButton.style.cursor = "pointer";
+      }
+    });
+  });
+
+  custom.addEventListener("input", function () {
+    const valid = amount.value === "custom" && Number(custom.value) > 0;
+    payButton.disabled = !valid;
+    payButton.style.opacity = valid ? "1" : "0.55";
+    payButton.style.cursor = valid ? "pointer" : "not-allowed";
+  });
 });
 </script>
-<button class="btn" onclick="window.payNow()">
+<button class="btn" onclick="window.payNow()" disabled style="opacity:0.55;cursor:not-allowed;">
 💳 Pay Now
 </button>
 
