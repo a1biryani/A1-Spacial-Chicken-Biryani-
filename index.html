@@ -1021,7 +1021,7 @@ initializeApp
 import {
 getAuth,
 GoogleAuthProvider,
-signInWithPopup,
+signInWithRedirect,
 onAuthStateChanged
 } from
 "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
@@ -1273,6 +1273,26 @@ selectedRating
 ? labels[selectedRating]
 : "Tap a star to rate";
 
+}
+
+/* Restore the review entered before Google redirect. */
+try{
+const pendingReview =
+sessionStorage.getItem("a1_pending_review");
+
+if(pendingReview){
+const data = JSON.parse(pendingReview);
+
+selectedRating =
+Number(data.rating)||0;
+
+reviewText.value =
+data.review || "";
+
+updateStars();
+}
+}catch(error){
+console.error("Pending review restore error:",error);
 }
 
 
@@ -1531,6 +1551,47 @@ postReviewBtn.textContent =
 
 }
 
+/* Complete the review that was waiting for Google redirect. */
+const pendingReview = sessionStorage.getItem("a1_pending_review");
+
+if(pendingReview){
+
+const pendingData = JSON.parse(pendingReview);
+
+const pendingRating = Number(pendingData.rating)||0;
+const pendingText = String(pendingData.review||"").trim();
+
+if(pendingRating >= 1 && pendingRating <= 5 && pendingText.length >= 3){
+
+await setDoc(
+
+doc(
+db,
+"customerReviews",
+user.uid
+),
+{
+uid:user.uid,
+name:user.displayName || "Google User",
+rating:pendingRating,
+review:pendingText,
+createdAt:serverTimestamp()
+},
+{merge:true}
+);
+
+selectedRating = pendingRating;
+reviewText.value = pendingText;
+updateStars();
+postReviewBtn.textContent = "⭐ Update Review";
+showMessage("Review successfully post ho gaya! ⭐",true);
+sessionStorage.removeItem("a1_pending_review");
+await loadReviews();
+
+}
+
+}
+
 }catch(error){
 
 console.error(error);
@@ -1607,13 +1668,21 @@ showMessage(
 "Google Login open ho raha hai..."
 );
 
-await signInWithPopup(
+/* Keep the selected rating/review across the redirect. */
+sessionStorage.setItem(
+"a1_pending_review",
+JSON.stringify({
+rating:selectedRating,
+review:review
+})
+);
+
+await signInWithRedirect(
 auth,
 provider
 );
 
-currentUser =
-auth.currentUser;
+return;
 
 }
 
@@ -1666,6 +1735,8 @@ showMessage(
 "Review successfully post ho gaya! ⭐",
 true
 );
+
+sessionStorage.removeItem("a1_pending_review");
 
 
 postReviewBtn.textContent=
