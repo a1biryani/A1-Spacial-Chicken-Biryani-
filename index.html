@@ -1021,7 +1021,6 @@ initializeApp
 import {
 getAuth,
 GoogleAuthProvider,
-signInWithPopup,
 signInWithRedirect,
 getRedirectResult,
 onAuthStateChanged
@@ -1513,18 +1512,7 @@ reviewList.innerHTML=
 }
 
 
-/* COMPLETE GOOGLE REDIRECT FLOW */
-
-try{
-await getRedirectResult(auth);
-}catch(error){
-console.error("Google redirect error:",error);
-if(error?.code){
-showMessage("Google Login mein problem aayi. Please dobara try karein.");
-}
-}
-
-/* CHECK LOGIN */
+/* CHECK LOGIN + COMPLETE REDIRECT REVIEW */
 
 onAuthStateChanged(
 auth,
@@ -1532,45 +1520,17 @@ async user=>{
 
 currentUser=user;
 
-if(user){
+if(!user) return;
 
-try{
-
-const oldReview =
-await getDoc(
-doc(
-db,
-"customerReviews",
-user.uid
-)
-);
-
-
-if(oldReview.exists()){
-
-const data =
-oldReview.data();
-
-selectedRating =
-Number(data.rating)||0;
-
-reviewText.value =
-data.review || "";
-
-updateStars();
-
-postReviewBtn.textContent =
-"⭐ Update Review";
-
-}
-
-/* Complete the review that was waiting for Google login. */
+/* IMPORTANT: finish the pending review FIRST.
+   A failed old-review read must never block a new review from being saved. */
 const pendingReview = sessionStorage.getItem("a1_pending_review");
 
 if(pendingReview){
 
-const pendingData = JSON.parse(pendingReview);
+try{
 
+const pendingData = JSON.parse(pendingReview);
 const pendingRating = Number(pendingData.rating)||0;
 const pendingText = String(pendingData.review||"").trim();
 
@@ -1601,20 +1561,67 @@ showMessage("Review successfully post ho gaya! ⭐",true);
 sessionStorage.removeItem("a1_pending_review");
 await loadReviews();
 
-}
+}else{
+
+sessionStorage.removeItem("a1_pending_review");
 
 }
 
 }catch(error){
 
-console.error(error);
+console.error("Pending review save error:",error);
+showMessage("Review save nahi ho paya. Please dobara try karein.");
 
 }
+
+}
+
+/* Load the user's previous review separately. */
+try{
+
+const oldReview =
+await getDoc(
+doc(
+db,
+"customerReviews",
+user.uid
+)
+);
+
+if(oldReview.exists()){
+
+const data = oldReview.data();
+selectedRating = Number(data.rating)||0;
+reviewText.value = data.review || "";
+updateStars();
+postReviewBtn.textContent = "⭐ Update Review";
+
+}
+
+}catch(error){
+
+/* A read-permission issue must not break the review posting flow. */
+console.warn("Previous review read skipped:",error);
 
 }
 
 }
 );
+
+/* Firebase recommends checking the redirect result after returning from Google. */
+try{
+await getRedirectResult(auth);
+}catch(error){
+console.error("Google redirect error:",error);
+
+if(error.code === "auth/unauthorized-domain"){
+showMessage("Google Login blocked hai. Firebase Authorized Domains check karein.");
+}else if(error.code === "auth/operation-not-allowed"){
+showMessage("Google Login Firebase mein enabled nahi hai.");
+}else{
+showMessage("Google Login complete nahi ho paya. Please dobara try karein.");
+}
+}
 
 
 /* POST REVIEW */
@@ -1681,7 +1688,7 @@ showMessage(
 "Google Login open ho raha hai..."
 );
 
-/* Keep the selected rating/review ready for the login flow. */
+/* Keep the selected rating/review while Google login opens. */
 sessionStorage.setItem(
 "a1_pending_review",
 JSON.stringify({
@@ -1690,17 +1697,11 @@ review:review
 })
 );
 
-/* Mobile browsers often block or fail the popup flow.
-   Use Firebase redirect on mobile; keep popup for desktop. */
-const isMobile =
-/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+await signInWithRedirect(
+auth,
+provider
+);
 
-if(isMobile){
-await signInWithRedirect(auth,provider);
-return;
-}
-
-await signInWithPopup(auth,provider);
 return;
 
 }
