@@ -1022,6 +1022,8 @@ import {
 getAuth,
 GoogleAuthProvider,
 signInWithPopup,
+signInWithRedirect,
+getRedirectResult,
 onAuthStateChanged
 } from
 "https://www.gstatic.com/firebasejs/12.17.0/firebase-auth.js";
@@ -1511,6 +1513,17 @@ reviewList.innerHTML=
 }
 
 
+/* COMPLETE GOOGLE REDIRECT FLOW */
+
+try{
+await getRedirectResult(auth);
+}catch(error){
+console.error("Google redirect error:",error);
+if(error?.code){
+showMessage("Google Login mein problem aayi. Please dobara try karein.");
+}
+}
+
 /* CHECK LOGIN */
 
 onAuthStateChanged(
@@ -1677,11 +1690,17 @@ review:review
 })
 );
 
-await signInWithPopup(
-auth,
-provider
-);
+/* Mobile browsers often block or fail the popup flow.
+   Use Firebase redirect on mobile; keep popup for desktop. */
+const isMobile =
+/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
+if(isMobile){
+await signInWithRedirect(auth,provider);
+return;
+}
+
+await signInWithPopup(auth,provider);
 return;
 
 }
