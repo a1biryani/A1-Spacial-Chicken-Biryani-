@@ -1237,6 +1237,19 @@ success ? "#087f23" : "#b00000";
 
 }
 
+function showDiagnosticError(label,error){
+
+const code = error?.code || "NO_ERROR_CODE";
+const message = error?.message || String(error) || "Unknown error";
+
+console.error(label,error);
+
+showMessage(
+"DIAGNOSTIC — " + label + " | code: " + code + " | message: " + message
+);
+
+}
+
 
 function updateStars(){
 
@@ -1569,8 +1582,7 @@ sessionStorage.removeItem("a1_pending_review");
 
 }catch(error){
 
-console.error("Pending review save error:",error);
-showMessage("Review save nahi ho paya. Please dobara try karein.");
+showDiagnosticError("Pending review save error",error);
 
 }
 
@@ -1601,7 +1613,7 @@ postReviewBtn.textContent = "⭐ Update Review";
 }catch(error){
 
 /* A read-permission issue must not break the review posting flow. */
-console.warn("Previous review read skipped:",error);
+showDiagnosticError("Previous review read error",error);
 
 }
 
@@ -1612,15 +1624,9 @@ console.warn("Previous review read skipped:",error);
 try{
 await getRedirectResult(auth);
 }catch(error){
-console.error("Google redirect error:",error);
 
-if(error.code === "auth/unauthorized-domain"){
-showMessage("Google Login blocked hai. Firebase Authorized Domains check karein.");
-}else if(error.code === "auth/operation-not-allowed"){
-showMessage("Google Login Firebase mein enabled nahi hai.");
-}else{
-showMessage("Google Login complete nahi ho paya. Please dobara try karein.");
-}
+showDiagnosticError("Google redirect error",error);
+
 }
 
 
@@ -1768,8 +1774,6 @@ await loadReviews();
 
 }catch(error){
 
-console.error(error);
-
 if(
 error.code===
 "auth/popup-closed-by-user"
@@ -1790,9 +1794,7 @@ showMessage(
 
 }else{
 
-showMessage(
-"Review post nahi ho paya. Please dobara try karein."
-);
+showDiagnosticError("Review post error",error);
 
 }
 
